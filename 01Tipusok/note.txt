@@ -11,4 +11,16 @@ c# ---------------------msil----------------------------|
 	-memóriakezelés
 	-tranzakciók kezelése
 	-többszálúság
-																
+										
+Alkalmazás->process->szálak								
+A stack-et az oprendszer, a heap-et a runtime adminisztrálja. A halom közös lehet a szálak között. A halom az alkalmazás indulásakor foglalódik le.
+A halom sebessége kisebb mint a stack		
+											
+          | call stack/verem memória|				|		halom/heap			|
+		  |-------------------------|				|---------------------------|
+		  |Main()                   |				|Ügyfél adat1,Ügyféladat2 
+		  |-------------------------|
+		  |Console.Readline()       |
+		  |
+		  |
+		  |													
