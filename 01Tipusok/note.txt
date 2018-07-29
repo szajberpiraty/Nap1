@@ -1,0 +1,14 @@
+﻿
+
+c# ---------------------msil----------------------------|
+														|
+
+-.NET keretrendszer
+	-osztálykönyvtár
+		rengeteg előre megírt függvény
+	
+-CLR (Common Language Runtime) MSIL futtatása
+	-memóriakezelés
+	-tranzakciók kezelése
+	-többszálúság
+																
