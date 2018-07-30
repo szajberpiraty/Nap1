@@ -39,6 +39,12 @@ namespace _02Ermefeldobas
             Console.WriteLine("A feldobás eredménye:{0}", eredmeny2);
             Console.ReadLine();
 
+            //cast-olás, azaz elérjük hogy a HamisErmeFeldobo függvénye legyen meghívva
+            int eredmeny3 = ((HamisErmeFeldobo)ermeFeldobo2).FeldobasEredmeny();
+
+            Console.WriteLine("A hamis feldobás eredménye:{0}", eredmeny3);
+            Console.ReadLine();
+
             //36-perctől folytatni
         }
     }
@@ -57,6 +63,7 @@ namespace _02Ermefeldobas
         internal int FeldobasEredmeny()
         {
             //throw new NotImplementedException(); Figyelmeztet, hogy nem implementáltuk még a függvényt
+            Console.WriteLine("Eredeti generátor");
             var szam=generator.Next(0,2);
             return szam;
         }
@@ -74,6 +81,7 @@ namespace _02Ermefeldobas
 
         internal new int FeldobasEredmeny()
         {
+            Console.WriteLine("Hamisított generátor");
             return 1;
         }
     }
