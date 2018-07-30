@@ -82,8 +82,23 @@ namespace _01Tipusok
             var szoveg2 = szoveg1;
             szoveg1 = "Bármi";
 
-            Console.WriteLine("szöveg1:{0},szöveg2:{1}", szoveg1, szoveg2); //a szöveg értéktípusként viselkedik
+            Console.WriteLine("szöveg1:{0},szöveg2:{1}", szoveg1, szoveg2); //a szöveg értéktípusként viselkedik, mindig másolódik a heap-en
             Console.ReadKey();
+
+            //teljesen rossz megoldás tehát:
+            var szoveg = "";
+            for (int i = 0; i < 10000; i++)
+            {
+                szoveg = szoveg + "valami";
+            }
+
+            //Sokkal jobb a beépített stringbuilder, csak egy példányt hoz létre
+            var sb = new StringBuilder();
+            for (int i = 0; i < 10000; i++)
+            {
+                sb.Append("Lóface");
+            }
+            sb.ToString(); //Itt adódik az eredmény
 
         }
     }
