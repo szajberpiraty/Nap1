@@ -26,10 +26,16 @@ namespace _02Ermefeldobas
     {
         static void Main(string[] args)
         {
-            var ermeFeldobo = new ErmeFeldobo();
+            ErmeFeldobo ermeFeldobo = new ErmeFeldobo();
            int eredmeny=ermeFeldobo.FeldobasEredmeny();
             Console.WriteLine("A feldobás eredménye:{0}", eredmeny);
             Console.ReadLine();
+
+            ErmeFeldobo ermeFeldobo2 = new HamisErmeFeldobo();
+            int eredmeny2 = ermeFeldobo2.FeldobasEredmeny();
+            Console.WriteLine("A feldobás eredménye:{0}", eredmeny2);
+            Console.ReadLine();
+
             //36-perctől folytatni
         }
     }
@@ -45,6 +51,13 @@ namespace _02Ermefeldobas
             //throw new NotImplementedException(); Figyelmeztet, hogy nem implementáltuk még a függvényt
             var szam=generator.Next(0,2);
             return szam;
+        }
+    }
+    class HamisErmeFeldobo
+    {
+        internal int FeldobasEredmeny()
+        {
+            return 1;
         }
     }
 }
