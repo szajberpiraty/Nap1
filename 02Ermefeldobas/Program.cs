@@ -46,6 +46,7 @@ namespace _02Ermefeldobas
             Console.ReadLine();
 
             //36-perctől folytatni
+            //1.09-től folytatás
         }
     }
     class ErmeFeldobo
@@ -57,7 +58,7 @@ namespace _02Ermefeldobas
 
         Random generator = new Random();
         /// <summary>
-        /// Érmefeldobó osztály
+        /// Érmefeldobó osztály, nem hamisítható
         /// </summary>
         /// <returns>0=fej,1=írás</returns>
         internal int FeldobasEredmeny()
@@ -67,10 +68,22 @@ namespace _02Ermefeldobas
             var szam=generator.Next(0,2);
             return szam;
         }
+        /// <summary>
+        /// Direkt hamisíthatóra hozom létre a virtual kulcsszóvalí így a leszármazott osztályban módosítható a függvény
+        /// </summary>
+        /// <returns></returns>
+        internal virtual int HamisithatoFeldobasEredmeny()
+        {
+            //throw new NotImplementedException(); Figyelmeztet, hogy nem implementáltuk még a függvényt
+            Console.WriteLine("Eredeti generátor");
+            var szam = generator.Next(0, 2);
+            return szam;
+        }
     }
     //származtatás az ErmeFeldobo osztályból
     /// <summary>
-    /// A new kulcsszóval az eredetihez hasonló nevű, de ahhoz nem kapcsolódó függvényt csinálok
+    /// A new kulcsszóval az eredetihez hasonló nevű, de ahhoz nem kapcsolódó függvényt csinálok. Ha a függvénynév megegyezik, akkor a 
+    /// fordító automatikusan kiteszi a new kulcsszót
     /// </summary>
     class HamisErmeFeldobo:ErmeFeldobo
     {
@@ -82,6 +95,17 @@ namespace _02Ermefeldobas
         internal new int FeldobasEredmeny()
         {
             Console.WriteLine("Hamisított generátor");
+            return 1;
+        }
+
+        /// <summary>
+        /// Ha az ősosztályban virtual függvény van, akkor a leszármazottban az override kulcsszóval felül lehet írni
+        /// </summary>
+        /// <returns></returns>
+        internal override int HamisithatoFeldobasEredmeny()
+                
+        {
+           // Console.WriteLine("Hamisított generátor");
             return 1;
         }
     }
