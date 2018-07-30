@@ -63,7 +63,7 @@ namespace _01Tipusok
             sajatertek2.Ertek = 20;
 
             Console.WriteLine("s1:{0},s2:{1},sh1{2},sh2{3}", sajatertek1.Ertek,sajatertek2.Ertek,sajatertek1.Hivatkozas.Ertek,sajatertek2.Hivatkozas.Ertek); 
-            //érték típus, saját, a hivatkozás típusok együtt változnak
+            //érték típus, saját, a hivatkozás típusok együtt változnak. A hivatkozás típus jellege nem változik akkor sem, ha érték típusba van csomagolva
 
             
             Console.ReadKey();
@@ -77,6 +77,14 @@ namespace _01Tipusok
 
             Console.WriteLine("s1:{0},s2:{1}", sajathivatkozas1.Ertek, sajathivatkozas2.Ertek); //ref típus, saját, együtt mozognak
             Console.ReadKey();
+            //Stringek a heap-re kerülnek, de értékként viselkednek
+            var szoveg1 = "Valami";
+            var szoveg2 = szoveg1;
+            szoveg1 = "Bármi";
+
+            Console.WriteLine("szöveg1:{0},szöveg2:{1}", szoveg1, szoveg2); //a szöveg értéktípusként viselkedik
+            Console.ReadKey();
+
         }
     }
     //Mi is tudunk osztályt (típust) csinálni
