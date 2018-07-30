@@ -24,3 +24,7 @@ A halom sebessége kisebb mint a stack
 		  |
 		  |
 		  |													
+
+		  Változók: 
+			-érték típus
+			-referencia típus
