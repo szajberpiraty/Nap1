@@ -26,7 +26,24 @@ namespace _02Ermefeldobas
     {
         static void Main(string[] args)
         {
-
+            var ermeFeldobo = new ErmeFeldobo();
+           int eredmeny=ermeFeldobo.FeldobasEredmeny();
+            Console.WriteLine("A feldobás eredménye:{0}", eredmeny);
+            Console.ReadLine();
+        }
+    }
+    class ErmeFeldobo
+    {
+        Random generator = new Random();
+        /// <summary>
+        /// Érmefeldobó osztály
+        /// </summary>
+        /// <returns>0=fej,1=írás</returns>
+        internal int FeldobasEredmeny()
+        {
+            //throw new NotImplementedException(); Figyelmeztet, hogy nem implementáltuk még a függvényt
+            var szam=generator.Next(0,2);
+            return szam;
         }
     }
 }
