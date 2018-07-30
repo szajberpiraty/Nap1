@@ -30,6 +30,7 @@ namespace _02Ermefeldobas
            int eredmeny=ermeFeldobo.FeldobasEredmeny();
             Console.WriteLine("A feldobás eredménye:{0}", eredmeny);
             Console.ReadLine();
+            //36-perctől folytatni
         }
     }
     class ErmeFeldobo
