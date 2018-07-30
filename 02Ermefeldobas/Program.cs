@@ -21,6 +21,9 @@ namespace _02Ermefeldobas
     //Osztály
     // Absztrakció, az objektum terve, ezt példányosítjuk
 
+    //Amikor leszármaztatunk  egy osztályt, akkor létrejön a leszármazott és az ős példánya is, az ős szolgáltatja az ős viselkedését és 
+    //tulajdonságait.
+
 
     class Program
     {
@@ -41,6 +44,11 @@ namespace _02Ermefeldobas
     }
     class ErmeFeldobo
     {
+        public ErmeFeldobo()
+        {
+            Console.WriteLine("Ermefeldobo konstruktor");
+        }
+
         Random generator = new Random();
         /// <summary>
         /// Érmefeldobó osztály
@@ -53,9 +61,18 @@ namespace _02Ermefeldobas
             return szam;
         }
     }
-    class HamisErmeFeldobo
+    //származtatás az ErmeFeldobo osztályból
+    /// <summary>
+    /// A new kulcsszóval az eredetihez hasonló nevű, de ahhoz nem kapcsolódó függvényt csinálok
+    /// </summary>
+    class HamisErmeFeldobo:ErmeFeldobo
     {
-        internal int FeldobasEredmeny()
+        public HamisErmeFeldobo()
+        {
+            Console.WriteLine("Hamis feldobo konstr");
+        }
+
+        internal new int FeldobasEredmeny()
         {
             return 1;
         }
