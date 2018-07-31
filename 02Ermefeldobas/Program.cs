@@ -87,6 +87,14 @@ namespace _02Ermefeldobas
             var szam = generator.Next(0, 2);
             return szam;
         }
+        /// <summary>
+        /// Példa, hogy az ős függvénye minden leszármazott osztályban megvan, ha new-al el nem nyomom, 
+        /// a sealed kulcsszóval meg lehet akadályozni a leszármaztatott osztály tovább örökítését
+        /// </summary>
+        internal virtual void LeszarmazasPelda()
+        {
+
+        }
     }
     //származtatás az ErmeFeldobo osztályból
     /// <summary>
