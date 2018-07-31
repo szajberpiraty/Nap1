@@ -27,7 +27,13 @@ namespace _03OsztalyokHaziallatok
 
             //Megtöri az egységbezárást
             haziallat2.LabSzam = 3;
-            
+
+            //egységbe tudom zárni az információt
+            haziallat2.mennyiLab();
+            haziallat2.HanySzeme = 12;
+            haziallat2.HanyFogaVan = 34;
+            var szemek = haziallat2.HanySzeme;
+
             Console.ReadKey();
         }
         class Haziallat
@@ -36,6 +42,21 @@ namespace _03OsztalyokHaziallatok
             String AllatFaj;
             public String AllatNev;
             public int LabSzam;
+            //A C# megkülönbözteti a kis és nagybetűket
+            int labSzam;
+            public int mennyiLab()
+            {
+                return labSzam;
+            }
+            public void setLabSzam(int labak)
+            {
+                labSzam = labak;
+            }
+            //property készítés
+            public int HanySzeme { get; set; }
+            private int hanyFogaVan;
+            //csak settert automatikusan nem lehet beállítani
+            public int HanyFogaVan {  set { hanyFogaVan = value; } }
 
         }
     }
