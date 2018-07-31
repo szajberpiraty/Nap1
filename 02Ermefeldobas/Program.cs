@@ -42,7 +42,15 @@ namespace _02Ermefeldobas
             //cast-olás, azaz elérjük hogy a HamisErmeFeldobo függvénye legyen meghívva
             int eredmeny3 = ((HamisErmeFeldobo)ermeFeldobo2).FeldobasEredmeny();
 
-            Console.WriteLine("A hamis feldobás eredménye:{0}", eredmeny3);
+
+            //A virtual/override működése, nem kell castolni a hamisításhoz
+            ErmeFeldobo ermeFeldobo4 = new HamisErmeFeldobo();
+            int eredmeny4 = ermeFeldobo4.HamisithatoFeldobasEredmeny();
+
+            ErmeFeldobo ermeFeldobo5 = new MegMegEgyFeldobo();
+            
+
+            Console.WriteLine("A hamis feldobás eredménye:{0}v4{0}", eredmeny3,eredmeny4);
             Console.ReadLine();
 
             //36-perctől folytatni
@@ -108,5 +116,20 @@ namespace _02Ermefeldobas
            // Console.WriteLine("Hamisított generátor");
             return 1;
         }
+
+        
+        
     }
+    class MegEgyFeldobo : ErmeFeldobo
+    {
+
+    }
+
+    //Többszörös öröklés
+    //Castolással bármelyik felület elérhető az öröklési láncban
+    class MegMegEgyFeldobo : HamisErmeFeldobo
+    {
+
+    }
+
 }
