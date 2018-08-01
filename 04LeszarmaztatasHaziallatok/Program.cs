@@ -27,6 +27,14 @@ namespace _04LeszarmaztatasHaziallatok
             kutya2.Beszel();
 
 
+            //direktben ki tudok jelölni egy felületet, most a Haziallat tipusu változónak a Kutya felületét használom
+            ((Kutya)kutya2).Koszon();
+            ((Kutya)kutya2).Enekel();
+            ((Kutya)kutya2).Beszel();
+
+            var haziallat2 = new Haziallat();
+           // ((Kutya)haziallat2).Beszel(); invalid cast kivétel
+
 
             Console.ReadLine();
         }
@@ -57,7 +65,13 @@ namespace _04LeszarmaztatasHaziallatok
             public override void Beszel()
             {
                 Console.WriteLine("A kutya beszél");
+                //Az ősosztály függvényét a base-el tudom hívni.
+                base.Beszel();
             }
+        }
+        class Macska:Haziallat
+        {
+
         }
     }
 }
