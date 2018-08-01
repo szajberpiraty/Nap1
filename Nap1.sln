@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03OsztalyokHaziallatok", "0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04LeszarmaztatasHaziallatok", "04LeszarmaztatasHaziallatok\04LeszarmaztatasHaziallatok.csproj", "{F2B3DDC9-0906-4396-941B-26BB34FC3666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05FeluletSikidomok", "FeluletSikidomok\05FeluletSikidomok.csproj", "{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F2B3DDC9-0906-4396-941B-26BB34FC3666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B3DDC9-0906-4396-941B-26BB34FC3666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B3DDC9-0906-4396-941B-26BB34FC3666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
