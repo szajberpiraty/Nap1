@@ -17,16 +17,24 @@ namespace FeluletSikidomok
             Console.WriteLine("Zu");
             sw.Stop();
             Console.WriteLine("Eltelt:{0}",sw.ElapsedTicks);
-            var alap = new Alap("Faka","Faka cím");
+
+            Letrehozas();
+
+          
+
+
+
+
+            Console.ReadKey();
+        }
+
+        private static void Letrehozas()
+        {
+            var alap = new Alap("Faka", "Faka cím");
             Console.WriteLine();
             var leszarmazott = new Leszarmaztatott();
             Console.WriteLine();
             var tovabb = new TovabbSzarmaztatott();
-
-
-
-
-
             Console.ReadKey();
         }
 
@@ -53,6 +61,11 @@ namespace FeluletSikidomok
             {
                 Console.WriteLine("Alap konstruktor");
             }
+            //Finalizer, akkor fut amikor az osztálypéldány befejezi az életét
+            ~Alap() //ő a véglegesítő aka destruktor, meg sem lehet hívni, a futtató környezet hívja meg
+            {
+                Console.WriteLine("Alap destruktor");
+            }
         }
 
         class Leszarmaztatott : Alap
@@ -61,12 +74,20 @@ namespace FeluletSikidomok
             {
                 Console.WriteLine("Leszármaztatott konstr");
             }
+            ~Leszarmaztatott()
+            {
+                Console.WriteLine("Leszarmazott destr");
+            }
         }
         class TovabbSzarmaztatott:Leszarmaztatott
         {
             public TovabbSzarmaztatott()
             {
                 Console.WriteLine("Tovább származtatott konstr");
+            }
+            ~TovabbSzarmaztatott()
+            {
+                Console.WriteLine("Tovább származtatott destr");
             }
         }
     }
