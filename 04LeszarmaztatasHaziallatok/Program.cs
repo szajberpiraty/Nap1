@@ -35,6 +35,35 @@ namespace _04LeszarmaztatasHaziallatok
             var haziallat2 = new Haziallat();
            // ((Kutya)haziallat2).Beszel(); invalid cast kivétel
 
+           //Hogyan érdemes típuskonverziót csináltatni
+           //Az object minden objektum ősosztálya, így bele lehet tenni bármilyen objektumot
+           
+           object o = kutya;
+            //Kivenni hogy lehet? Ez a leggyorsabb
+            if (o is Kutya)
+            {
+                Console.WriteLine("Ez egy kutya");
+                Kutya k = (Kutya)o;
+            }
+
+            //as kulcsszóval konvertálok
+            Kutya k2 = o as Kutya;
+            if (k2!=null)
+            {//sikerült a konverzió
+                Console.WriteLine("Ő egy kutya");
+                Kutya k = (Kutya)o;
+            }
+            //try catch-el mivel elszállhat a konvertálási kísérlet ez a leglassabb módszer
+
+            try
+            {
+                Kutya k3 = (Kutya)o;
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Elszállt");
+            }
 
             Console.ReadLine();
         }
