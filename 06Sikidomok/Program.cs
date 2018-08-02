@@ -17,7 +17,15 @@ namespace _06Sikidomok
             lista.Add(teglalap);
             lista.Add(haromszog);
             lista.Add(kor);
+            var sum = 0;
 
+            foreach (ISikidom sz in lista)
+            {
+                sum = sum + sz.Terulet();
+            }
+
+            Console.WriteLine("A síkidomok területe:{0}",sum);
+            Console.ReadKey();
         }
 
         
