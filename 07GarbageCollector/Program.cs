@@ -18,33 +18,73 @@ namespace _07GarbageCollector
         static void Main(string[] args)
         {
             var alap = new Alap();
-            var lesz = new Leszarmaztatott();
+            //var lesz = new Leszarmaztatott();
 
             Console.WriteLine(GC.GetGeneration(alap));
             //Console.ReadKey();
 
             GC.Collect(); //minden generációra fut
             Console.WriteLine(GC.GetGeneration(alap));
-            alap = null;
-            lesz = null;
+           // alap = null;
+           // lesz = null;
             GC.Collect();
 
+            //objektumok helyfoglalása
+            
+            Console.WriteLine(GC.GetTotalMemory(false));
+
+            //méretes listát készítünk
+
+            var lista = new List<String>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                lista.Add(new String('X',7000));
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                var leszarmaztatott = new Leszarmaztatott(i);
+            }
+            GC.Collect();
+            //Kollektálás után az utolsó példány beragad!
+
+            Console.WriteLine(GC.GetTotalMemory(false));
             Console.ReadKey();
         }
 
     }
     class Alap
     {
+        protected int i;
+        public Alap()
+        {
+
+        }
+
+        public Alap(int i)
+        {
+            this.i = i;
+        }
+
         ~Alap()
         {
-            Console.WriteLine("Alap véglegesítő");
+            Console.WriteLine("Alap véglegesítő {0}",i);
         }
     }
     class Leszarmaztatott:Alap
     {
+        
+
+        public Leszarmaztatott(int i):base(i)
+
+        {
+            
+        }
+
         ~Leszarmaztatott()
         {
-            Console.WriteLine("Leszárm véglegesítő");
+            Console.WriteLine("Leszárm véglegesítő {0}",i);
         }
     }
 }
