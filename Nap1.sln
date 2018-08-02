@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04LeszarmaztatasHaziallatok
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05FeluletSikidomok", "FeluletSikidomok\05FeluletSikidomok.csproj", "{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06Sikidomok", "06Sikidomok\06Sikidomok.csproj", "{628992A2-D19F-4F7D-9010-7E9B68EECFF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECABD5BF-C838-4110-B43D-EFB3BE244BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628992A2-D19F-4F7D-9010-7E9B68EECFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628992A2-D19F-4F7D-9010-7E9B68EECFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628992A2-D19F-4F7D-9010-7E9B68EECFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628992A2-D19F-4F7D-9010-7E9B68EECFF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
