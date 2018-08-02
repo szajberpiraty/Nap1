@@ -45,9 +45,11 @@ namespace _07GarbageCollector
             for (int i = 0; i < 2; i++)
             {
                 var leszarmaztatott = new Leszarmaztatott(i);
+                leszarmaztatott = null; //ha ezt kiadom, akkor lefut az utolsóra is
             }
             GC.Collect();
-            //Kollektálás után az utolsó példány beragad!
+            //Kollektálás után az utolsó példány beragad! Debug és release mód között különbség van
+            //Jitter-optimalizálja a kódot. A jitter és a debug össze van kötve
 
             Console.WriteLine(GC.GetTotalMemory(false));
             Console.ReadKey();
