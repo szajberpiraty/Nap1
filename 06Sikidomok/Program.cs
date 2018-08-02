@@ -13,6 +13,11 @@ namespace _06Sikidomok
             var teglalap = new Teglalap(szelesseg:3,magassag:3);  //ki lehet így generáltatni a konstruktort
             var haromszog = new Haromszog(alap: 3, magassag: 3);
             var kor = new Kor(sugar: 5);
+            var lista = new List<ISikidom>();// Bármit elfogad, ami megvalósítja az ISikidom felületet
+            lista.Add(teglalap);
+            lista.Add(haromszog);
+            lista.Add(kor);
+
         }
 
         
