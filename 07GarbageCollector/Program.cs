@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace _07GarbageCollector
@@ -45,13 +46,26 @@ namespace _07GarbageCollector
             for (int i = 0; i < 2; i++)
             {
                 var leszarmaztatott = new Leszarmaztatott(i);
-                leszarmaztatott = null; //ha ezt kiadom, akkor lefut az utolsóra is
+                leszarmaztatott = null; //ha ezt kiadom, akkor lefut az utolsóra is. Release módban nem lesz hatása, felesleges
+                                        //debug módban lehetnek függvények, amelyek futnak, amelyeket figyelhetünk ezért az utolsó példány véglegesítője
+                                        //csak kilépéskor fut le.
             }
             GC.Collect();
             //Kollektálás után az utolsó példány beragad! Debug és release mód között különbség van
             //Jitter-optimalizálja a kódot. A jitter és a debug össze van kötve
 
-            Console.WriteLine(GC.GetTotalMemory(false));
+            //Egy hivatkozás korosításának nyomon követése
+            var lista2 = new List<string>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                Thread.Sleep(10);
+                lista2.Add(new string('a', 6000));
+                Console.Write(GC.GetGeneration(lista2));
+            }
+            //Diagnostic tools-t érdemes nézni, ha nagyon sok a szemétgyűjtés, akkor valami probléma van (túl sok objektum, stb.) Teljesítmény prblémát okoz!
+
+            //Console.WriteLine(GC.GetTotalMemory(false));
             Console.ReadKey();
         }
 
