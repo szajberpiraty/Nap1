@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07GarbageCollector", "07Gar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08GarbageCollector2", "08GarbageCollector2\08GarbageCollector2.csproj", "{0F6979D9-2C26-409E-AF8A-78E11D91B282}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09IDisposable", "09IDisposable\09IDisposable.csproj", "{3F41E29F-0C96-497B-B2CF-B6683588BCD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{0F6979D9-2C26-409E-AF8A-78E11D91B282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F6979D9-2C26-409E-AF8A-78E11D91B282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F6979D9-2C26-409E-AF8A-78E11D91B282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
