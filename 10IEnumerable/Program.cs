@@ -16,13 +16,20 @@ namespace _10IEnumerable
             //    Console.WriteLine(listaElem);
             //}
 
-            //Console.WriteLine("1 kg kenyér");
-            //Console.WriteLine("10 dkg szalámi");
-            //Console.WriteLine("1l tej");
-            //Console.WriteLine("1 kg liszt");
-            //Console.WriteLine("édesség");
-            //Console.WriteLine("lakat");
-            //Console.WriteLine("póni");
+
+            var lista = new BejarhatoOsztaly();
+            lista.Add("első");
+            lista.Add("második");
+            lista.Add("harmadik");
+            lista.Add("negyedik");
+            lista.Add("ötödik");
+
+            foreach (var elem in lista)
+            {
+                Console.WriteLine("------foreach elem:{0}",elem);
+            }
+
+
             Console.ReadKey();
 
 
@@ -49,6 +56,7 @@ namespace _10IEnumerable
 
             public IEnumerator GetEnumerator()
             {
+                Console.WriteLine(">>>>>>>>>>>>>Getenumerator");
                 return new Bejaro(lista);
             }
         }
@@ -68,7 +76,7 @@ namespace _10IEnumerable
                 get
                 {
                     var current = lista[pozicio];
-                    Console.WriteLine("Aktuális pozíció:{0}",current);
+                    Console.WriteLine(">>>Aktuális pozíció:{0}",current);
                     return current;
                 }
             }
@@ -77,7 +85,7 @@ namespace _10IEnumerable
             {
                 pozicio++;
                 var vanMegElem = pozicio < lista.Count();
-                Console.WriteLine("Pozicio:{0},Van még:{1}",pozicio,vanMegElem);
+                Console.WriteLine(">>>Pozicio:{0},Van még:{1}",pozicio,vanMegElem);
                 return vanMegElem;
             }
 
