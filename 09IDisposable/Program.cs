@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace _09IDisposable
@@ -36,6 +37,11 @@ namespace _09IDisposable
     }
     class TisztaLevego : IDisposable
     {
+        public void Tennivalo()
+        {
+
+        }
+
         //File stream esetében "kötelesek" (gentleman agreement) vagyunk megvalósítani az IDisposable-t.
         Stream menedzseltStream = new FileStream("testfile.txt", FileMode.Create);
 
@@ -44,6 +50,8 @@ namespace _09IDisposable
 
         //HA nagy méretű menedzselt memóriát használunk
         List<string> menedzseltLista= new List<string>();
+      
+
         public TisztaLevego()
         {
             NemMenedzseltMemoria = Marshal.AllocHGlobal(1000000);//Lefoglalok 1000000 byte-ot
@@ -67,12 +75,46 @@ namespace _09IDisposable
             GC.SuppressFinalize(this);
         }
 
+        private int isDisposed=0;
         private void Dispose(bool dispose)
         {
+            //Ez így nem szálbiztos!
+            //if (isDisposed)
+            //{
+            //    throw new ObjectDisposedException(nameof(TisztaLevego));
+            //}
+            //isDisposed = true;
+
+            //Szálbiztos verzió: itt az isDispose típusát meg kell változtatni, mert bool-al nem megy
+            //Három dolgot csinál
+            //1. var old=isDisposed  elmenti a változót
+            //2. isDisposed=1
+            //3. return old /visszatér az old-al
+
+            if (Interlocked.Exchange(ref isDisposed, 1)==1)
+            {//ha ez van akkor a dispose már lefutott
+                throw new ObjectDisposedException(nameof(TisztaLevego));
+            }
+            
+
+
             if (dispose)
             {
-                //még nem futott le a szemétgyűjtés
+                //if (menedzseltLista!=null) nem tökéletes megoldás
+                //{
+                    //még nem futott le a szemétgyűjtés, a menedzselt objektumokat takarítani kell
+                    menedzseltLista.Clear();
+                    //menedzseltLista=null;
+                //}
+                menedzseltStream.Dispose();
+                //menedzseltStream = null;
+                                
+
             }
+            //nem menedzselt memória takarítása
+            Marshal.FreeHGlobal(NemMenedzseltMemoria);
+            GC.RemoveMemoryPressure(1000000);
+
         }
     }
 
