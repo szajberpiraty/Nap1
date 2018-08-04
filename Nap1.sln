@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08GarbageCollector2", "08Ga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09IDisposable", "09IDisposable\09IDisposable.csproj", "{3F41E29F-0C96-497B-B2CF-B6683588BCD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10IEnumerable", "10IEnumerable\10IEnumerable.csproj", "{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F41E29F-0C96-497B-B2CF-B6683588BCD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
