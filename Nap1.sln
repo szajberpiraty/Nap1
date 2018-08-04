@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09IDisposable", "09IDisposa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10IEnumerable", "10IEnumerable\10IEnumerable.csproj", "{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11IEnumerableT", "11IEnumerableT\11IEnumerableT.csproj", "{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D87E4E5-A0C0-4492-AC6B-A4238EA97B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
