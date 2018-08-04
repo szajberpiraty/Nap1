@@ -11,8 +11,16 @@ namespace _11IEnumerableT
     {
         static void Main(string[] args)
         {
-            var adatok = new BejarhatoAdatok<Adatok>(new Adatok(szoveg:"ZUU",szam:12)); //1.10-től folytatás, mert itt leakadt a dolog
-            foreach (var adat in adatok)
+            var adatok = new BejarhatoAdatok<Adatok>(
+                new Adatok[] {
+                
+                new Adatok(szoveg:"ZU",szam:11),
+                new Adatok(szoveg:"ZUU",szam:12),
+                new Adatok(szoveg:"ZUUU",szam:13)
+
+
+                }); 
+            foreach (var adat in adatok) //Foreach-ban sosem módosítunk listát!!! Exceptiont vált ki!
             {
                 Console.WriteLine("Név:{0},Szám{1}",adat.szoveg,adat.Szam);
             }
@@ -23,6 +31,12 @@ namespace _11IEnumerableT
     {
         List<T> lista = new List<T>();
         int pozicio=-1;
+        private Adatok[] adatok;
+
+        public BejarhatoAdatok(T[] adatok) //Így más működik, de nagyon zavaros, Plesz is belezavarodott :) A végső értelme a saját implementációnak, hogy többféle szempont szerint is be lehet járni a gyűjteményt
+        {
+            lista = new List<T>(adatok);
+        }
 
         public T Current
         {
@@ -42,7 +56,8 @@ namespace _11IEnumerableT
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //Ebben az esetben nem kell implementálni, mert ciklusból kilépéskor meghívódik
+            //throw new NotImplementedException();
         }
 
       
