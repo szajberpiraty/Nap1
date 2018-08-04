@@ -37,10 +37,50 @@ namespace _09IDisposable
     }
     class TisztaLevego : IDisposable
     {
+        //Védeni kell a függvényeket és a property-ket is
         public void Tennivalo()
         {
+            //todo:tennivaló végiggondolni, hogy a megoldás teljes-e
+            if (isDisposed==1)
+            {
+                throw new ObjectDisposedException(nameof(TisztaLevego));
+            }
+            //Tennivaló elintézése
 
         }
+
+        //property védelme
+        private int myProperty;
+        public int MyProperty
+        {
+            get
+            {
+                if (isDisposed == 1)
+                {
+                    throw new ObjectDisposedException(nameof(TisztaLevego));
+                }
+                //Tennivaló elintézés
+                return myProperty;
+            }
+
+
+            set
+            {
+                if (isDisposed == 1)
+                {
+                    throw new ObjectDisposedException(nameof(TisztaLevego));
+                }
+                //Tennivaló elintézés
+            }
+
+
+
+        }
+        
+
+              
+
+
 
         //File stream esetében "kötelesek" (gentleman agreement) vagyunk megvalósítani az IDisposable-t.
         Stream menedzseltStream = new FileStream("testfile.txt", FileMode.Create);
@@ -76,6 +116,8 @@ namespace _09IDisposable
         }
 
         private int isDisposed=0;
+      
+
         private void Dispose(bool dispose)
         {
             //Ez így nem szálbiztos!
