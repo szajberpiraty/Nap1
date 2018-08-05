@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10IEnumerable", "10IEnumera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11IEnumerableT", "11IEnumerableT\11IEnumerableT.csproj", "{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12Exception", "12Exception\12Exception.csproj", "{3664294F-9D5C-46B2-AB59-7ED62D0FF4C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C56EB2A-8EA8-420C-86A3-2205B0476CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3664294F-9D5C-46B2-AB59-7ED62D0FF4C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3664294F-9D5C-46B2-AB59-7ED62D0FF4C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3664294F-9D5C-46B2-AB59-7ED62D0FF4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3664294F-9D5C-46B2-AB59-7ED62D0FF4C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
