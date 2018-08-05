@@ -20,6 +20,7 @@ namespace _13Log4Net
                 log.Debug("Naplóüzenet a log4net-ből");
             }
             Console.ReadLine();
+            //folytatás 0:47-től
 
         }
 
