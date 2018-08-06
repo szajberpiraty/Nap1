@@ -9,6 +9,6 @@ namespace _13Log4Net.models
 {
     public class Log4netContext:DbContext
     {
-        public DbSet<Log> dbSet { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }

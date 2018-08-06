@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _13Log4Net.models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,10 +17,28 @@ namespace _13Log4Net
             //Nagyon egyszerű nyomkövetés
             //PeldaNaplo();
             log4net.Config.XmlConfigurator.Configure();//appconfig konfigot betölti, létrehozza a környezetet
-            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+            //AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 
             //Peldanaplo2();
 
+            Peldanaplo3();
+
+            //Így lehet elérni a Codefirts adatbázist
+
+            //using (var db = new Log4netContext())
+            //{
+            //    Console.WriteLine("Bejegyzések:{0}",db.Logs.Count());
+            //}
+
+                Console.ReadLine();
+            
+
+
+
+        }
+
+        private static void Peldanaplo3()
+        {
             var r = new Random();
 
 
@@ -27,15 +46,15 @@ namespace _13Log4Net
             while (!Console.KeyAvailable)
             {
                 var level = r.Next(95);
-                if (level<50)
+                if (level < 50)
                 {
                     log.DebugFormat("Debug üzenet {0}", level);
 
                 }
 
-                if (level>=50 && level<=70)
+                if (level >= 50 && level <= 70)
                 {
-                    log.InfoFormat("Info üzenet {0}",level);
+                    log.InfoFormat("Info üzenet {0}", level);
                 }
                 if (level > 70 && level <= 85)
                 {
@@ -46,7 +65,7 @@ namespace _13Log4Net
                     catch (Exception ex)
                     {
 
-                       // log.Error("Hiba!",ex);
+                        log.Error("Hiba!",ex);
                     }
                     log.WarnFormat("Warning üzenet {0}", level);
                 }
@@ -56,11 +75,6 @@ namespace _13Log4Net
                 }
                 Thread.Sleep(200);
             }
-
-
-            Console.ReadLine();
-            //folytatás 0:47-től
-
         }
 
         private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
