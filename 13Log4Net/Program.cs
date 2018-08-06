@@ -17,7 +17,7 @@ namespace _13Log4Net
             //Nagyon egyszerű nyomkövetés
             //PeldaNaplo();
             log4net.Config.XmlConfigurator.Configure();//appconfig konfigot betölti, létrehozza a környezetet
-            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+            //AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 
             //Peldanaplo2();
 
