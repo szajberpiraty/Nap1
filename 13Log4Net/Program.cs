@@ -16,7 +16,7 @@ namespace _13Log4Net
             //Nagyon egyszerű nyomkövetés
             //PeldaNaplo();
             log4net.Config.XmlConfigurator.Configure();//appconfig konfigot betölti, létrehozza a környezetet
-
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 
             //Peldanaplo2();
 
@@ -39,6 +39,15 @@ namespace _13Log4Net
                 }
                 if (level > 70 && level <= 85)
                 {
+                    try
+                    {
+                        throw new ArgumentNullException();
+                    }
+                    catch (Exception ex)
+                    {
+
+                       // log.Error("Hiba!",ex);
+                    }
                     log.WarnFormat("Warning üzenet {0}", level);
                 }
                 if (level > 85 && level <= 95)
@@ -52,6 +61,11 @@ namespace _13Log4Net
             Console.ReadLine();
             //folytatás 0:47-től
 
+        }
+
+        private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+        {
+            log.Error("Hiba történet",e.Exception);
         }
 
         private static void Peldanaplo2()
