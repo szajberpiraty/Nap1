@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace _13Log4Net
@@ -19,7 +20,33 @@ namespace _13Log4Net
 
             //Peldanaplo2();
 
+            var r = new Random();
 
+
+
+            while (!Console.KeyAvailable)
+            {
+                var level = r.Next(95);
+                if (level<50)
+                {
+                    log.DebugFormat("Debug üzenet {0}", level);
+
+                }
+
+                if (level>=50 && level<=70)
+                {
+                    log.InfoFormat("Info üzenet {0}",level);
+                }
+                if (level > 70 && level <= 85)
+                {
+                    log.WarnFormat("Warning üzenet {0}", level);
+                }
+                if (level > 85 && level <= 95)
+                {
+                    log.ErrorFormat("Warning üzenet {0}", level);
+                }
+                Thread.Sleep(200);
+            }
 
 
             Console.ReadLine();
