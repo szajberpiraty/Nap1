@@ -15,13 +15,24 @@ namespace _13Log4Net
             //Nagyon egyszerű nyomkövetés
             //PeldaNaplo();
             log4net.Config.XmlConfigurator.Configure();//appconfig konfigot betölti, létrehozza a környezetet
+
+
+            //Peldanaplo2();
+
+
+
+
+            Console.ReadLine();
+            //folytatás 0:47-től
+
+        }
+
+        private static void Peldanaplo2()
+        {
             for (int i = 0; i < 10; i++)
             {
                 log.Debug("Naplóüzenet a log4net-ből");
             }
-            Console.ReadLine();
-            //folytatás 0:47-től
-
         }
 
         private static void PeldaNaplo()
