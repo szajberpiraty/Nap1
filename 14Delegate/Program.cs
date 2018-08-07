@@ -18,6 +18,8 @@ namespace _14Delegate
         /// 
         delegate void PeldaDelegate(string Uzenet); //A deklaráció a függvény visszatérési értékére ill. paraméterlistájára vonatkozik
 
+        delegate int FvDelegatePelda();
+
         //Olyan delegate, ami képes módosítani az adatokon
 
         static void EgyikFuggveny(string Szov)
@@ -34,7 +36,31 @@ namespace _14Delegate
             //ElsoDelegateMinta(); //Kitettem füvvénybe
             MasodikDelegatePelda();
 
+
+            FvDelegatePelda fuggvenyek = delegate { return 0; };
+            //Ha visszatérési értékkel rendelkező függvényeket teszünk a híváslistára,
+            //akkor abból egyet kapunk vissza, és nem fogjuk tudni, hogy melyiket,
+            //tehát ilyet ne csináljunk
+
+
+            fuggvenyek += ElsoFuggveny;
+            fuggvenyek += MasodikFuggveny;
+
+            var eredmeny = fuggvenyek();
+
+            Console.WriteLine(eredmeny);  //Nem tudni, melyiket kapjuk vissza
+
             Console.ReadLine();
+        }
+
+        private static int MasodikFuggveny()
+        {
+            return 2;
+        }
+
+        private static int ElsoFuggveny()
+        {
+            return 1;
         }
 
         private static void MasodikDelegatePelda()
