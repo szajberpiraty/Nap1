@@ -18,6 +18,8 @@ namespace _14Delegate
         /// 
         delegate void PeldaDelegate(string Uzenet); //A deklaráció a függvény visszatérési értékére ill. paraméterlistájára vonatkozik
 
+        //Olyan delegate, ami képes módosítani az adatokon
+
         static void EgyikFuggveny(string Szov)
         {
             Console.WriteLine("Egyik függvény:{0}",Szov);
@@ -30,10 +32,44 @@ namespace _14Delegate
         static void Main(string[] args)
         {
             //ElsoDelegateMinta(); //Kitettem füvvénybe
-
-
+            MasodikDelegatePelda();
 
             Console.ReadLine();
+        }
+
+        private static void MasodikDelegatePelda()
+        {
+            var modositoOsztaly = new ModositoOsztaly();
+            modositoOsztaly.Add("Első");
+            modositoOsztaly.Add("Második");
+            modositoOsztaly.Add("Harmadik");
+            modositoOsztaly.Add("Negyedik");
+            modositoOsztaly.Add("Ötödik");
+
+            modositoOsztaly.ModositasElvegzes(veddKiGt);
+            modositoOsztaly.Tartalom();
+
+            ModositoOsztaly.fvDefinicio modositasok;
+            modositasok = veddKiM;
+
+            //anonymous delegált
+            modositasok += delegate (ref string szoveg)
+            {
+                szoveg = szoveg.Replace("a", "");
+            };
+            modositoOsztaly.ModositasElvegzes(modositasok);
+            modositoOsztaly.Tartalom();
+        }
+
+        private static void veddKiM(ref string modositando)
+        {
+            modositando = modositando.Replace("m", "");
+        }
+
+        private static void veddKiGt(ref string modositando)
+        {
+            modositando = modositando.Replace("g", "");
+           
         }
 
         private static void ElsoDelegateMinta()
@@ -44,6 +80,36 @@ namespace _14Delegate
             hivasLista += MasikFuggveny; //Hozzáadunk egy másik függvényt
 
             hivasLista("mizu?");
+        }
+    }
+
+    internal class ModositoOsztaly
+    {
+        List<string> lista = new List<string>();
+        public delegate void fvDefinicio(ref string modositando);
+
+        public void ModositasElvegzes(fvDefinicio fvHivaslista)
+        {
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                var x = lista[i];
+                fvHivaslista(ref x);
+                lista[i] = x;
+            }
+
+        }
+       
+        public void Add(string elem)
+        {
+            lista.Add(elem);
+        }
+        public void Tartalom()
+        {
+            foreach (var item in lista)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
