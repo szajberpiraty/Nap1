@@ -84,6 +84,10 @@ namespace _14Delegate
 
             fuggvenyek += ElsoFuggveny;
             fuggvenyek += MasodikFuggveny;
+            
+            //Leiratkozás a híváslistáról
+            //fuggvenyek-=MasodikFuggveny;  
+
 
             var fv = fuggvenyek;
             //Biztosítjuk, hogy valaki legyen a híváslistán
