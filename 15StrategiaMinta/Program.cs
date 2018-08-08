@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace _15StrategiaMinta
 {
+    //A lényeg, hogy nem kell műveleteket bedrótozni egy adott osztályba, hanem a műveletet ki tudjuk emelni, 
+    //készítünk neki felületet, megvalósítjuk egy másik osztályban, majd a cél osztályban is.
     class Program
     {
         static void Main(string[] args)
@@ -13,9 +15,11 @@ namespace _15StrategiaMinta
             var adatOsztaly = new AdatOsztaly(adatok: new List<int>(new int[] {1,2,3,4,5,6,11,22}));
 
             var osszeg = adatOsztaly.Osszeg();
-            
-            //stratégia mintával való megvalósítás
 
+            //stratégia mintával való megvalósítás
+            adatOsztaly.MuveletMegadasa(new OsszegzoMuvelet1());
+
+            var osszeg2 = adatOsztaly.MuveletElvegzese();
 
         }
     }
