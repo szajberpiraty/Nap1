@@ -16,6 +16,7 @@ namespace _14Delegate
         /// </summary>
         /// <param name="args"></param>
         /// 
+        //Ha senki sincs a hívási listára feliratkozva, akkor a program hibára fut
         delegate void PeldaDelegate(string Uzenet); //A deklaráció a függvény visszatérési értékére ill. paraméterlistájára vonatkozik
 
         delegate int FvDelegatePelda();
@@ -37,20 +38,64 @@ namespace _14Delegate
             MasodikDelegatePelda();
 
 
-            FvDelegatePelda fuggvenyek = delegate { return 0; };
+
             //Ha visszatérési értékkel rendelkező függvényeket teszünk a híváslistára,
             //akkor abból egyet kapunk vissza, és nem fogjuk tudni, hogy melyiket,
             //tehát ilyet ne csináljunk
+
+            HarmadikDelegatePelda();
+
+            NegyedikDelegatePelda();
+
+            Console.ReadLine();
+        }
+
+
+        /// <summary>
+        /// Biztosítani kell, hogy  híváslistát csak akkor hívjuk meg, ha van rá feliratkozva metódus
+        /// egyébként null reference errorral elszáll .
+        /// </summary>
+        private static void NegyedikDelegatePelda()
+        {
+            PeldaDelegate hivaslista=null;
+
+
+            
+            //if (hivaslista != null) helyett
+            
+
+            //lemásoljuk a híváslistát
+            var lista = hivaslista;
+            //majd itt ellenőrzünk
+            if (lista!=null)
+            {
+                lista("paraméter");
+            }
+            //Vs2015, vagy az utáni környezetben
+            //lista?.Invoke("paraméter");
+           
+            hivaslista("ez egy példa");
+        }
+
+        private static void HarmadikDelegatePelda()
+        {
+            FvDelegatePelda fuggvenyek = delegate { return 0; };
 
 
             fuggvenyek += ElsoFuggveny;
             fuggvenyek += MasodikFuggveny;
 
-            var eredmeny = fuggvenyek();
+            var fv = fuggvenyek;
+            //Biztosítjuk, hogy valaki legyen a híváslistán
 
-            Console.WriteLine(eredmeny);  //Nem tudni, melyiket kapjuk vissza
+            if (fv!=null)
+            {
+                var eredmeny = fuggvenyek();
 
-            Console.ReadLine();
+                Console.WriteLine(eredmeny);  //Nem tudni, melyiket kapjuk vissza
+            }
+
+           
         }
 
         private static int MasodikFuggveny()
@@ -105,7 +150,15 @@ namespace _14Delegate
             hivasLista("első üzenet");  //híváslista meghívása
             hivasLista += MasikFuggveny; //Hozzáadunk egy másik függvényt
 
-            hivasLista("mizu?");
+
+            //Biztosítjuk, hogy legyen valaki a híváslistán
+            var hl = hivasLista;
+            if (hl!=null)
+            {
+                hivasLista("mizu?");
+            }
+
+            
         }
     }
 
@@ -120,7 +173,14 @@ namespace _14Delegate
             for (int i = 0; i < lista.Count; i++)
             {
                 var x = lista[i];
-                fvHivaslista(ref x);
+
+                //Biztosítjuk, hogy ne lehessen üres híváslistát meghívni
+                var fvl = fvHivaslista;
+                if (fvl!=null)
+                {
+                    fvHivaslista(ref x);
+                    
+                }
                 lista[i] = x;
             }
 
