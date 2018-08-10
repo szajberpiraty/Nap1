@@ -11,7 +11,7 @@ namespace _18EsemenyekMegoldas
         static void Main(string[] args)
         {
             var bankszamla = new Bankszamla();
-            bankszamla.ErtesitesiHivasLista += delegate { Console.WriteLine("Minuszba menté'!!"); };
+            bankszamla.ErtesitesiHivasLista += EsemenyKezelo;
             bankszamla.Jovairas(osszeg: 500);
 
             //Probléma, hogy ezt meg lehet csinálni, így elvesztem az egységbezárást, ez ezt teszi
@@ -26,6 +26,11 @@ namespace _18EsemenyekMegoldas
 
             Console.ReadLine();
             //Nem engedhetem, hogy az egyenleget kívülről lehessen írni, ezért a property setterét private-ra kell állítani
+        }
+
+        private static void EsemenyKezelo(object sender, EsemenyDTO e)
+        {
+            Console.WriteLine("Minuszba menté'!! Egyenleg {0},Összeg{1}",((Bankszamla)sender).Egyenleg,e);
         }
     }
     class Bankszamla
@@ -50,7 +55,7 @@ namespace _18EsemenyekMegoldas
         //Nem lehet az osztályon kyvül (=-vel) értéket adni,így felülírni a híváslistát
         // A delegate funkció kiváltására az EventHandler szolgál
 
-        public event EventHandler ErtesitesiHivasLista = null;
+        public event EventHandler<EsemenyDTO> ErtesitesiHivasLista = null;
 
         public int Egyenleg { get; private set; }
 
@@ -64,9 +69,22 @@ namespace _18EsemenyekMegoldas
                 var hivaslista = ErtesitesiHivasLista;
                 if (hivaslista != null)
                 {
-                    hivaslista();
+                    //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
+                    hivaslista(this, new EsemenyDTO(osszeg));
                 }
             }
         }
+    }
+
+    public class EsemenyDTO
+    {
+        
+
+        public EsemenyDTO(int osszeg)
+        {
+            this.JovairOsszeg = osszeg;
+        }
+
+        public int JovairOsszeg { get; set; }
     }
 }
