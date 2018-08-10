@@ -30,7 +30,7 @@ namespace _18EsemenyekMegoldas
 
         private static void EsemenyKezelo(object sender, EsemenyDTO e)
         {
-            Console.WriteLine("Minuszba menté'!! Egyenleg {0},Összeg{1}",((Bankszamla)sender).Egyenleg,e.JovairOsszeg);
+            Console.WriteLine("Minuszba menté'!! Egyenleg előtte {0},Összeg{1},Egyenleg utána{2}",e.EgyenlegElotte,e.JovairOsszeg,e.EgyenlegUtana);
         }
     }
     class Bankszamla
@@ -61,30 +61,43 @@ namespace _18EsemenyekMegoldas
 
         public void Jovairas(int osszeg)
         {
-            Egyenleg += osszeg;
-            Console.WriteLine("Összeg:{0},új egyenleg{1}", osszeg, Egyenleg);
-            if (Egyenleg < 0)
+            var egyenlegElotte = Egyenleg;
+           
+            if (Egyenleg+osszeg < 0)
             {
                 //Értesíteni kell a tulajdonost
                 var hivaslista = ErtesitesiHivasLista;
                 if (hivaslista != null)
                 {
                     //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
-                    hivaslista(this, new EsemenyDTO(osszeg));
+                    var dto = new EsemenyDTO(osszeg, egyenlegElotte, Egyenleg);
+                    hivaslista(this, dto);
+                    if (dto.MehetAJovairas)
+                    {
+                        Egyenleg += osszeg;
+                        Console.WriteLine("Összeg:{0},új egyenleg{1}", osszeg, Egyenleg);
+                    }
                 }
             }
         }
     }
 
+    //Data Transfer Object
     public class EsemenyDTO
     {
         
 
-        public EsemenyDTO(int osszeg)
+        public EsemenyDTO(int osszeg,int elotte,int egyenleg)
         {
             this.JovairOsszeg = osszeg;
+            this.EgyenlegElotte = elotte;
+            this.EgyenlegUtana = egyenleg;
+            this.MehetAJovairas = true;
         }
 
         public int JovairOsszeg { get; set; }
+        public int EgyenlegElotte { get; set; }
+        public int EgyenlegUtana { get; set; }
+        public bool MehetAJovairas { get; set; }
     }
 }
