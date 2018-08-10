@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16StrategiaDelegateTel", "1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17Esemenyek", "17Esemenyek\17Esemenyek.csproj", "{B83DDF97-A129-4A10-96E0-63E374FF20A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "18EsemenyekMegoldas", "18EsemenyekMegoldas\18EsemenyekMegoldas.csproj", "{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{B83DDF97-A129-4A10-96E0-63E374FF20A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B83DDF97-A129-4A10-96E0-63E374FF20A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B83DDF97-A129-4A10-96E0-63E374FF20A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
