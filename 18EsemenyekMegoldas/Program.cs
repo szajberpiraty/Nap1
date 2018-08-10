@@ -30,7 +30,7 @@ namespace _18EsemenyekMegoldas
 
         private static void EsemenyKezelo(object sender, EsemenyDTO e)
         {
-            Console.WriteLine("Minuszba menté'!! Egyenleg {0},Összeg{1}",((Bankszamla)sender).Egyenleg,e);
+            Console.WriteLine("Minuszba menté'!! Egyenleg {0},Összeg{1}",((Bankszamla)sender).Egyenleg,e.JovairOsszeg);
         }
     }
     class Bankszamla
