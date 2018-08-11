@@ -55,20 +55,27 @@ namespace _18EsemenyekMegoldas
         //Nem lehet az osztályon kyvül (=-vel) értéket adni,így felülírni a híváslistát
         // A delegate funkció kiváltására az EventHandler szolgál
 
-        public event EventHandler<EsemenyDTO> MinuszbaMenne = null;
+        //E helyett használható anonymous delegate, akkor pedig nem kell null vizsgálat
+        //public event EventHandler<EsemenyDTO> MinuszbaMenne = null;
+
+        //Anonymous delegate-el
+        public event EventHandler<EsemenyDTO> MinuszbaMenne = delegate { };
 
         private bool OnMinuszbaMenne(int osszeg,int egyenlegElotte, int egyenlegUtana)
         {
-            var hivaslista = MinuszbaMenne;
-            var dto = new EsemenyDTO(osszeg, egyenlegElotte, Egyenleg);
 
-            if (hivaslista != null)
-            {
-                //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
-               
-                hivaslista(this, dto);
-                
-            }
+            var dto = new EsemenyDTO(osszeg, egyenlegElotte, Egyenleg);
+            //var hivaslista = MinuszbaMenne;
+
+            //if (hivaslista != null)
+            //{
+            //    //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
+
+            //    hivaslista(this, dto);
+
+            //}
+
+            MinuszbaMenne(this,dto);
             return dto.MehetAJovairas;
         }
 
@@ -93,7 +100,8 @@ namespace _18EsemenyekMegoldas
             }
             else
             {
-
+                Egyenleg += osszeg;
+                Console.WriteLine("Összeg:{0},új egyenleg{1}", osszeg, Egyenleg);
             }
         }
     }
