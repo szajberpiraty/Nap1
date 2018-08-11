@@ -11,7 +11,7 @@ namespace _18EsemenyekMegoldas
         static void Main(string[] args)
         {
             var bankszamla = new Bankszamla();
-            bankszamla.ErtesitesiHivasLista += EsemenyKezelo;
+            bankszamla.MinuszbaMenne += EsemenyKezelo;
             bankszamla.Jovairas(osszeg: 500);
 
             //Probléma, hogy ezt meg lehet csinálni, így elvesztem az egységbezárást, ez ezt teszi
@@ -55,7 +55,22 @@ namespace _18EsemenyekMegoldas
         //Nem lehet az osztályon kyvül (=-vel) értéket adni,így felülírni a híváslistát
         // A delegate funkció kiváltására az EventHandler szolgál
 
-        public event EventHandler<EsemenyDTO> ErtesitesiHivasLista = null;
+        public event EventHandler<EsemenyDTO> MinuszbaMenne = null;
+
+        private bool OnMinuszbaMenne(int osszeg,int egyenlegElotte, int egyenlegUtana)
+        {
+            var hivaslista = MinuszbaMenne;
+            var dto = new EsemenyDTO(osszeg, egyenlegElotte, Egyenleg);
+
+            if (hivaslista != null)
+            {
+                //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
+               
+                hivaslista(this, dto);
+                
+            }
+            return dto.MehetAJovairas;
+        }
 
         public int Egyenleg { get; private set; }
 
@@ -66,23 +81,26 @@ namespace _18EsemenyekMegoldas
             if (Egyenleg+osszeg < 0)
             {
                 //Értesíteni kell a tulajdonost
-                var hivaslista = ErtesitesiHivasLista;
-                if (hivaslista != null)
-                {
+               
                     //paraméterezni kell, az eventargs.empty jelenti, ha semmit nem akarunk az e paraméterben küldeni
-                    var dto = new EsemenyDTO(osszeg, egyenlegElotte, Egyenleg);
-                    hivaslista(this, dto);
-                    if (dto.MehetAJovairas)
+                   
+                    if (OnMinuszbaMenne(osszeg,egyenlegElotte,Egyenleg+osszeg))
                     {
                         Egyenleg += osszeg;
                         Console.WriteLine("Összeg:{0},új egyenleg{1}", osszeg, Egyenleg);
                     }
-                }
+                
+            }
+            else
+            {
+
             }
         }
     }
 
     //Data Transfer Object
+    //public class EsemenyDTO:EventArgs -nem kötelező, de C# konvenció, hogy az EsemenyDTO osztály leszármaztatjuk  az EventArgs-ból
+
     public class EsemenyDTO
     {
         
