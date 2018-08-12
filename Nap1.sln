@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17Esemenyek", "17Esemenyek\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "18EsemenyekMegoldas", "18EsemenyekMegoldas\18EsemenyekMegoldas.csproj", "{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19StreamekStreamReader", "19StreamekStreamReader\19StreamekStreamReader.csproj", "{3EAC4C3C-8845-474D-BADE-7F323835079F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E88BCD3-C1D3-4417-89F9-C8F53FB302AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
