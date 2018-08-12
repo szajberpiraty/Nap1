@@ -21,15 +21,21 @@ namespace _20SerializeDeserialize
             
             };
             var filename = "teszt.txt";
+            var serializer = new XmlSerializer(typeof(Adatosztaly));
             using (var fs = new FileStream(filename, FileMode.Create))
             {
 
-                var serializer = new XmlSerializer(typeof(Adatosztaly));
+               
                 serializer.Serialize(fs,adat);
 
             }
+            using (var fs = new FileStream(filename, FileMode.Open))
+            {
+               
+                var beolvasott = serializer.Deserialize(fs);
+            }
 
-
+            //Folytatás 28 perctől
         }
     }
     public class Adatosztaly
