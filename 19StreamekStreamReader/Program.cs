@@ -19,6 +19,21 @@ namespace _19StreamekStreamReader
                 , Convert.ToChar(119)
                 , '\u0027')
                 , Encoding.UTF8);
+
+            using (var fs = new FileStream(filename, FileMode.Open))  //Using-al kötelező használni, mivel IDisposable
+            {
+                using (var sr = new StreamReader(fs, Encoding.UTF8)) //Using-al kötelező használni, mivel IDisposable
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var text = sr.ReadLine();
+                        Console.WriteLine(text);
+                    }
+                    
+                }
+            }
+
+            Console.ReadLine();
         }
     }
 }
