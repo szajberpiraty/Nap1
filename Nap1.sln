@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "18EsemenyekMegoldas", "18Es
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19StreamekStreamReader", "19StreamekStreamReader\19StreamekStreamReader.csproj", "{3EAC4C3C-8845-474D-BADE-7F323835079F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "20SerializeDeserialize", "20SerializeDeserialize\20SerializeDeserialize.csproj", "{7D48A030-E539-47DC-AFE6-2364516D47D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EAC4C3C-8845-474D-BADE-7F323835079F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D48A030-E539-47DC-AFE6-2364516D47D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D48A030-E539-47DC-AFE6-2364516D47D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D48A030-E539-47DC-AFE6-2364516D47D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D48A030-E539-47DC-AFE6-2364516D47D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
