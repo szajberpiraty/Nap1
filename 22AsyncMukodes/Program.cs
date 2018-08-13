@@ -106,7 +106,42 @@ namespace _22AsyncMukodes
             var eredmeny043 = am.EndInvoke(ar043);
             Console.WriteLine("+Fő szál aszinkron 403 végzett eredmény {0}", eredmeny043);
 
+
+            //5.Callback használata
+            var ar051 = am.BeginInvoke(5, "Aszinkron példa 51", MunkaVege, null);
+            Console.WriteLine("+Fő szál aszinkron 5 hívás elindult");
+
+            //ugyanez lambdával
+            var ar052 = am.BeginInvoke(5, "Aszinkron példa 52"
+                ,x=> Console.WriteLine("Callback szál ötödik példa végzett")
+                , null);
+            Console.WriteLine("+Fő szál aszinkron 5 hívás elindult");
+
+            //6.callback visszatérési értékkel
+            //Visszatérési értékhez EndInvoke-ot kell hívni, ahhoz pedig kell a híváslista am változója,
+            //ezért ezt átadjuk
+            var ar061 = am.BeginInvoke(5, "Aszinkron példa 61", MunkaVegeEredmennyel, am);
+            Console.WriteLine("+Fő szál aszinkron 61 hívás elindult");
+
+
             Console.ReadLine();
+        }
+
+        private static void MunkaVegeEredmennyel(IAsyncResult ar)
+        {
+            //A híváskor átadott 4. paraméterhez így lehet hozzáférni
+            var hivaslista = ar.AsyncState;
+            //Ahhoz, hogy a típus felületéhez hozzáférjünk, konvertálni (castolni) kell
+            var am = (Func<int, string, DateTime>)hivaslista;
+
+            //Így már elérhető az eredmény
+            var eredmeny = am.EndInvoke(ar);
+            Console.WriteLine("Callback szál ötödik példa végzett, eredmény {0}",eredmeny);
+        }
+
+        private static void MunkaVege(IAsyncResult ar)
+        {
+            Console.WriteLine("Callback szál ötödik példa végzett");
         }
     }
 }
