@@ -36,9 +36,32 @@ namespace _21FuncActionLambda
 
             hivaslista += z => z * z;
             Console.WriteLine(hivaslista(2));
-            Console.ReadLine();
+            //Console.ReadLine();
             //Az Action<> és a Func<> előre legyártott, a keretrendszer részét képező delegate definíciók
-             
+            //A kacsacsőrök között egy generikus paramétert tudok átadni, ami egy típus
+            //Action<> visszatérési érték nélküli delegate definíció
+            //Func<> visszatérési értékkel rendelkező delegate def
+
+            //megadjuk a paraméterlistát, és megadjuk a visszatérési érték típusát
+            Func<int, int> negyzet2 = z => z * z;
+
+            //Ha egynél több paraméter van
+            Func<int, int, string> szorzas = (a,b) => (a*b).ToString();
+
+            //Négyzetre emelés az Action-al
+            Action<int> ujnegyzet = x => Console.WriteLine(x * x);
+            ujnegyzet(9);
+
+            //Actionnál kell kiírás, mert egyébként nem működik
+            Action<int,int,int> ujszorzas = (a,b,c) => Console.WriteLine("Új szorzás:{0}",a*b*c);
+            ujszorzas(3, 4, 5);
+
+
+
+            Console.WriteLine(negyzet2(4));
+            Console.WriteLine(szorzas(2,3));
+
+            Console.ReadLine();
 
         }
         static int NegyzetreEmeles(int x)
