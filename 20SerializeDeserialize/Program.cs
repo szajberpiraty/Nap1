@@ -18,7 +18,15 @@ namespace _20SerializeDeserialize
                 TizedesTort=12.67m,
                 Datum=DateTime.MaxValue,
                 DatumMin=DateTime.MinValue,
-                Szoveg="ÁrvíztűrőTükörfúrógép"
+                Szoveg="ÁrvíztűrőTükörfúrógép",
+                Aladatosztaly=new AlAdatosztaly()
+                {
+                    Egesz = 112,
+                    TizedesTort = decimal.MinValue,
+                    Datum = DateTime.MaxValue,
+                    DatumMin = DateTime.MinValue,
+                    Szoveg = "ÁrvíztűrőTükörfúrógép"
+                }
             
             };
             var filename = "teszt.txt";
@@ -49,5 +57,18 @@ namespace _20SerializeDeserialize
         public DateTime Datum { get; set; }
         public DateTime DatumMin { get; set; }
         public string Szoveg { get; set; }
+        public AlAdatosztaly Aladatosztaly { get; set; }
+    }
+    public class AlAdatosztaly
+    {
+        public int Egesz { get; set; }
+        public decimal TizedesTort { get; set; }
+        public DateTime Datum { get; set; }
+        public DateTime DatumMin { get; set; }
+        public string Szoveg { get; set; }
+    }
+    public class ListaAdat
+    {
+        public List<Adatosztaly> ListaAdatok { get; set; }
     }
 }
