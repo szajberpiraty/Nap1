@@ -77,6 +77,35 @@ namespace _22AsyncMukodes
             var eredmeny03 = am.EndInvoke(ar03);
             Console.WriteLine("+Fő szál aszinkron 3 végzett eredmény {0}", eredmeny03);
 
+            //4.Több függvényt indítunk párhuzamosan
+
+
+            var ar041 = am.BeginInvoke(6, "Aszinkron példa 401", null, null);
+            Console.WriteLine("+Fő szál aszinkron hívás elindult 401");
+
+            var ar042 = am.BeginInvoke(4, "Aszinkron példa 402", null, null);
+            Console.WriteLine("+Fő szál aszinkron hívás elindult 402");
+
+            var ar043 = am.BeginInvoke(5, "Aszinkron példa 403", null, null);
+            Console.WriteLine("+Fő szál aszinkron hívás elindult 403");
+
+            //Így egyszerre tetszőleges számú aszinkron végrehajtást be tudunk várni
+            WaitHandle.WaitAll(new WaitHandle[]
+            {
+                ar041.AsyncWaitHandle,
+                ar042.AsyncWaitHandle,
+                ar043.AsyncWaitHandle
+            }
+                
+                );
+
+            var eredmeny041 = am.EndInvoke(ar041);
+            Console.WriteLine("+Fő szál aszinkron 401 végzett eredmény {0}", eredmeny041);
+            var eredmeny042 = am.EndInvoke(ar042);
+            Console.WriteLine("+Fő szál aszinkron 402 végzett eredmény {0}", eredmeny042);
+            var eredmeny043 = am.EndInvoke(ar043);
+            Console.WriteLine("+Fő szál aszinkron 403 végzett eredmény {0}", eredmeny043);
+
             Console.ReadLine();
         }
     }
