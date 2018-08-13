@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,8 +34,11 @@ namespace _20SerializeDeserialize
             {
                
                 var beolvasott = serializer.Deserialize(fs);
-            }
 
+                //Remek json konverter, naplózáskor is jól jöhet, egyszerűbb az adatok kiírása
+                Console.WriteLine(JsonConvert.SerializeObject(beolvasott,Formatting.Indented));
+            }
+            Console.ReadLine();
             //Folytatás 28 perctől
         }
     }
