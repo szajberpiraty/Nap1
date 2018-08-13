@@ -30,7 +30,17 @@ namespace _22AsyncMukodes
             //Szinkron módon így is meg lehetett volna hívni
             //var eredmeny0=am.Invoke(3,"Szinkron hívás");
 
-            am.BeginInvoke(5, "Aszinkron példa 1", null, null);
+            //Aszinkron indítás
+            var ar01=am.BeginInvoke(5, "Aszinkron példa 1", null, null);
+            Console.WriteLine("+Fő szál aszinkron hívás elindult");
+
+            //Hogyan lehet egy aszinkron hívás eredményéhez hozzáférni?
+
+            //1.lehetőség: blokkolás
+            var eredmeny01 = am.EndInvoke(ar01);
+            Console.WriteLine("+Fő szál aszinkron 1 végzett eredmény {0}", eredmeny01);
+
+            //Folytatás 20:54-től
 
             Console.ReadLine();
         }
