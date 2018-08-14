@@ -124,6 +124,19 @@ namespace _22AsyncMukodes
             Console.WriteLine("+Fő szál aszinkron 61 hívás elindult");
 
 
+            //Az eredményhez való hozzáférés Asyncstate nélkül
+            var ar07 = am.BeginInvoke(5, "Aszinkron példa 7"
+                , ar =>
+                {
+                    var eredmeny = am.EndInvoke(ar);
+                    Console.WriteLine("Callback szál hetedik példa végzett, eredmény {0}", eredmeny);
+                }
+                , null);
+
+
+
+
+
             Console.ReadLine();
         }
 
