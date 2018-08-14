@@ -126,12 +126,20 @@ namespace _22AsyncMukodes
 
             //Az eredményhez való hozzáférés Asyncstate nélkül
             var ar07 = am.BeginInvoke(5, "Aszinkron példa 7"
-                , ar =>
+                , ar =>//A formális paramétere a callback kifejezésnek, a lambda kifejezés baloldala
                 {
-                    var eredmeny = am.EndInvoke(ar);
+                    var eredmeny = am.EndInvoke(ar);//A kódblokk hozzáfér a lokális változókhoz,így am-hez is,így nem kell paraméter átadás
                     Console.WriteLine("Callback szál hetedik példa végzett, eredmény {0}", eredmeny);
                 }
                 , null);
+
+            AsyncCallback callback = ar =>//A formális paramétere a callback kifejezésnek, a lambda kifejezés baloldala
+            {
+                var eredmeny = am.EndInvoke(ar);//A kódblokk hozzáfér a lokális változókhoz,így am-hez is,így nem kell paraméter átadás
+                Console.WriteLine("Callback szál nyolcadik példa végzett, eredmény {0}", eredmeny);
+            };
+            //Ugyanaz, csak a callback-et kiemeljük külön változóba
+            var ar08 = am.BeginInvoke(5, "Aszinkron példa 8", callback, null);
 
 
 
