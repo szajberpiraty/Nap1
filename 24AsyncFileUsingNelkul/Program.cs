@@ -50,6 +50,7 @@ namespace _24AsyncFileUsingNelkul
 
             //Ez a megoldás elszáll, megy az aszinkron hívás, közben a főszál véget ér, így aztán kezeletlen dispose-al meghal a program
             Console.ReadLine();
+            //Folytatás 28:50-től az async hagyományossal
         }
     }
 }
