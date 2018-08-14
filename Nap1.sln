@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "22AsyncMukodes", "22AsyncMu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "23AsyncFile", "23AsyncFile\23AsyncFile.csproj", "{106F1180-74CF-4A1C-AE36-7C6F1A8FD945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "24AsyncFileUsingNelkul", "24AsyncFileUsingNelkul\24AsyncFileUsingNelkul.csproj", "{6F129232-6929-41B6-831C-8C5875F7E463}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{106F1180-74CF-4A1C-AE36-7C6F1A8FD945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106F1180-74CF-4A1C-AE36-7C6F1A8FD945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106F1180-74CF-4A1C-AE36-7C6F1A8FD945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F129232-6929-41B6-831C-8C5875F7E463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F129232-6929-41B6-831C-8C5875F7E463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F129232-6929-41B6-831C-8C5875F7E463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F129232-6929-41B6-831C-8C5875F7E463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
