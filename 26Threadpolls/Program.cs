@@ -40,9 +40,10 @@ namespace _26ThreadPools
 
                 for (int i = 0; i < 20000; i++)
                 {
-                    lock (_lock) { 
-                    gyujto += i;
-                    }
+                    //lock (_lock) { 
+                    //gyujto += i;
+                    //}
+                    Interlocked.Add(ref gyujto,i);
                 }
                 //mre.Set();    
                 Console.WriteLine("+->{0}, eredmény {1} Végzett, id {2}", o, gyujto,id);
