@@ -28,7 +28,10 @@ namespace _26ThreadPools
             };
 
             //Processzoronként 1 thread a minimum, ez alá nem tudunk menni
-            ThreadPool.SetMaxThreads(4,300);
+            ThreadPool.SetMaxThreads(6,300);
+
+            //Szálak minimális száma
+            ThreadPool.SetMinThreads(6,300);
 
             ThreadPool.QueueUserWorkItem(callback,"Egy");
             ThreadPool.QueueUserWorkItem(callback,"Kettő");
