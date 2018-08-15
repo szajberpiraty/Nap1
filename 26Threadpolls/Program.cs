@@ -17,9 +17,40 @@ namespace _26ThreadPools
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Teszt1();
-            Teszt2();
+            //Teszt1();
+           // Teszt2();
+
+            Teszt3();
             Console.ReadLine();
+        }
+
+        private static void Teszt3()
+        {
+            int gyujto = 0;
+            var mre = new ManualResetEvent(false);
+
+            WaitCallback callback = o =>
+            {
+                var id = Thread.CurrentThread.ManagedThreadId;
+               
+                Console.WriteLine("+->{0} Elindult, id {1}", o, id);
+
+                for (int i = 0; i < 10000; i++)
+                {
+                    gyujto += i;
+                }
+                //mre.Set();    
+                Console.WriteLine("+->{0}, eredmény {1} Végzett, id {2}", o, gyujto,id);
+            };
+          
+            ThreadPool.QueueUserWorkItem(callback, "Egy");
+            ThreadPool.QueueUserWorkItem(callback, "Kettő");
+            ThreadPool.QueueUserWorkItem(callback, "Három");
+            ThreadPool.QueueUserWorkItem(callback, "Négy");
+            //Káosz az eredmény, nem lehet, hogy ugyanazon változót több szálból olvassuk, írjuk
+            //mre.WaitOne();
+            Console.ReadLine();
+            Console.WriteLine("Eredmeny: {0}",gyujto);
         }
 
         private static void Teszt2()
@@ -42,11 +73,13 @@ namespace _26ThreadPools
             ThreadPool.QueueUserWorkItem(callback, "Kettő");
             ThreadPool.QueueUserWorkItem(callback, "Három");
             ThreadPool.QueueUserWorkItem(callback, "Négy");
+            ThreadPool.QueueUserWorkItem(o => { Console.WriteLine("Öt vár");Thread.Sleep(2000); Console.WriteLine("Öt beállít"); mre.Set(); });
 
-            Console.WriteLine("+Main A jelző piros");
-            Console.ReadLine();
-            mre.Set();
-            Console.WriteLine("+Main A jelző zöld");
+            //Console.WriteLine("+Main A jelző piros");
+            //Console.ReadLine();
+            //mre.Set();
+            //Console.WriteLine("+Main A jelző zöld");
+
 
         }
 
