@@ -15,6 +15,9 @@ namespace _26ThreadPools
         /// A thread létrehozása erőforrásigényes, ennek kezelésére ThreadPool-t használ a dotnet
         /// </summary>
         /// <param name="args"></param>
+        /// 
+        static readonly object _lock = new object();
+
         static void Main(string[] args)
         {
             //Teszt1();
@@ -35,9 +38,11 @@ namespace _26ThreadPools
                
                 Console.WriteLine("+->{0} Elindult, id {1}", o, id);
 
-                for (int i = 0; i < 10000; i++)
+                for (int i = 0; i < 20000; i++)
                 {
+                    lock (_lock) { 
                     gyujto += i;
+                    }
                 }
                 //mre.Set();    
                 Console.WriteLine("+->{0}, eredmény {1} Végzett, id {2}", o, gyujto,id);
