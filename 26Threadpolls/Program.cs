@@ -17,31 +17,66 @@ namespace _26ThreadPools
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            WaitCallback callback = o=>
+            Teszt1();
+            Teszt2();
+            Console.ReadLine();
+        }
+
+        private static void Teszt2()
+        {
+            var mre = new ManualResetEvent(false);
+            WaitCallback callback = o =>
             {
                 var id = Thread.CurrentThread.ManagedThreadId;
-                Console.WriteLine("+->{0} Elindult, id {1}", o,id);
+                Console.WriteLine("+->{0} Elindult, id {1}", o, id);
+                //Ha ez rövidebb idő, akkor a thread időben felszabadul,és a következő megkapja
+                //Ha több idő, pl 10.sec, akkor egy idő után a scheduler új szálat hoz létre, de ez időbe telik
+                //Thread.Sleep(10000);
+                mre.WaitOne();
+                Console.WriteLine("+->{0} Végzett, id {1}", o, id);
+            };
+
+           
+
+            ThreadPool.QueueUserWorkItem(callback, "Egy");
+            ThreadPool.QueueUserWorkItem(callback, "Kettő");
+            ThreadPool.QueueUserWorkItem(callback, "Három");
+            ThreadPool.QueueUserWorkItem(callback, "Négy");
+
+            Console.WriteLine("+Main A jelző piros");
+            Console.ReadLine();
+            mre.Set();
+            Console.WriteLine("+Main A jelző zöld");
+
+        }
+
+        private static void Teszt1()
+        {
+            WaitCallback callback = o =>
+            {
+                var id = Thread.CurrentThread.ManagedThreadId;
+                Console.WriteLine("+->{0} Elindult, id {1}", o, id);
                 //Ha ez rövidebb idő, akkor a thread időben felszabadul,és a következő megkapja
                 //Ha több idő, pl 10.sec, akkor egy idő után a scheduler új szálat hoz létre, de ez időbe telik
                 Thread.Sleep(10000);
-                Console.WriteLine("+->{0} Végzett, id {1}", o,id);
+                Console.WriteLine("+->{0} Végzett, id {1}", o, id);
             };
 
             //Processzoronként 1 thread a minimum, ez alá nem tudunk menni
-            ThreadPool.SetMaxThreads(6,300);
+            ThreadPool.SetMaxThreads(6, 300);
 
             //Szálak minimális száma
-            ThreadPool.SetMinThreads(6,300);
+            ThreadPool.SetMinThreads(6, 300);
 
-            ThreadPool.QueueUserWorkItem(callback,"Egy");
-            ThreadPool.QueueUserWorkItem(callback,"Kettő");
+            ThreadPool.QueueUserWorkItem(callback, "Egy");
+            ThreadPool.QueueUserWorkItem(callback, "Kettő");
             ThreadPool.QueueUserWorkItem(callback, "Három");
             ThreadPool.QueueUserWorkItem(callback, "Négy");
             ThreadPool.QueueUserWorkItem(callback, "Öt");
             ThreadPool.QueueUserWorkItem(callback, "Hat");
             ThreadPool.QueueUserWorkItem(callback, "Hét");
             ThreadPool.QueueUserWorkItem(callback, "Nyolc");
-            Console.ReadLine();
+           
         }
     }
 }
