@@ -40,10 +40,10 @@ namespace _26ThreadPools
 
                 for (int i = 0; i < 20000; i++)
                 {
-                    //lock (_lock) { 
+                    //lock (_lock) { //a lock teljesítmény problémát okozhat!!
                     //gyujto += i;
                     //}
-                    Interlocked.Add(ref gyujto,i);
+                    Interlocked.Add(ref gyujto,i); //Ez jobb, pont erre van
                 }
                 //mre.Set();    
                 Console.WriteLine("+->{0}, eredmény {1} Végzett, id {2}", o, gyujto,id);
