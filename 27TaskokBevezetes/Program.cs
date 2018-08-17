@@ -17,10 +17,126 @@ namespace _27TaskokBevezetes
             //teszt2();
 
             //Taszkok leállítása
-            teszt3();
+            //teszt3();
+            //több taszk párhuzamos leállítása
+            //teszt4();
+
+            //Taszkok közötti függőségek kezelése
+            teszt5();
 
 
             Console.ReadLine();
+        }
+
+        private static void teszt5()
+        {
+            var cts = new CancellationTokenSource();
+            Action todo = () =>
+            {
+                Console.WriteLine("+Feladat futik");
+            };
+            Action subtodo = () =>
+            {
+                Console.WriteLine("+-Alfeladat futik");
+
+            };
+        }
+
+        private static void teszt4()
+        {
+            //itt mindent úgy csinálunk, ahogy kell
+            var cts = new CancellationTokenSource();
+            Action todo1 = () =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    //3.lépés, erőforrás takarítás ha kell
+                    if (cts.IsCancellationRequested)
+                    {//Ha érkezett leállítási kérés, akkor itt el lehet végezni az erőforrások felszabadítását
+                        Console.WriteLine("Cancel érkezett, takarítunk");
+                    }
+                    //4.Exception dobása
+                    cts.Token.ThrowIfCancellationRequested();
+                    Console.WriteLine("i:{0}", i);
+                    Thread.Sleep(100);
+
+                }
+
+
+
+            };
+            Action todo2 = () =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    //3.lépés, erőforrás takarítás ha kell
+                    if (cts.IsCancellationRequested)
+                    {//Ha érkezett leállítási kérés, akkor itt el lehet végezni az erőforrások felszabadítását
+                        Console.WriteLine("Cancel érkezett, takarítunk");
+                    }
+                    //4.Exception dobása
+                    //itt nem dobunk kivételt
+                    //cts.Token.ThrowIfCancellationRequested();
+                    Console.WriteLine("i:{0}", i);
+                    Thread.Sleep(100);
+
+                }
+
+                
+            };
+            Action todo3 = () =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("i:{0}", i);
+                    Thread.Sleep(100);
+
+                }
+
+                throw new StackOverflowException();
+
+            };
+
+            //Csak akkor fog rendesen működni, ha mind a 6 lépést betartjuk, egyébként hibás lesz a működés
+            var task1 = new Task(todo1,cts.Token);
+            var task2 = new Task(todo2, cts.Token);
+            var task3 = new Task(todo1);
+            var task4 = new Task(todo2);
+            var task5 = new Task(todo3,cts.Token);
+            var task6 = new Task(todo3);
+            task1.Start();
+            task2.Start();
+            task3.Start();
+            task4.Start();
+            task5.Start();
+            task6.Start();
+
+
+            try
+            {
+                Thread.Sleep(200);
+                //5.lépés, cancel kiadása
+                cts.Cancel();
+                Task.WaitAll(new Task[] {task1,task2,task3,task4,task5,task6 });
+            }
+            catch (AggregateException ex)
+            {//6. cancel kezelése
+
+                foreach (var e in ex.InnerExceptions)
+                {
+                    if (e is TaskCanceledException)
+                    {
+                        Console.WriteLine("Cancel érkezett");
+                    }
+                }
+
+            }
+            Console.WriteLine("T1 státusz:{0}", task1.Status);
+            Console.WriteLine("T2 státusz:{0}", task2.Status);
+            Console.WriteLine("T3 státusz:{0}", task3.Status);
+            Console.WriteLine("T4 státusz:{0}", task4.Status);
+            Console.WriteLine("T5 státusz:{0}", task5.Status);
+            Console.WriteLine("T6 státusz:{0}", task6.Status);
         }
 
         private static void teszt3()
@@ -69,7 +185,7 @@ namespace _27TaskokBevezetes
                 
             }
             Console.WriteLine(task.Status);
-
+            
         }
 
         private static void teszt2()
