@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25AsyncFileHagyomanyos", "2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "26ThreadPools", "26Threadpolls\26ThreadPools.csproj", "{2B463FFA-1434-4628-A961-77B488F91664}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "27TaskokBevezetes", "27TaskokBevezetes\27TaskokBevezetes.csproj", "{6CE8DC15-E081-4C60-9D8A-E447DDA1680B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{2B463FFA-1434-4628-A961-77B488F91664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B463FFA-1434-4628-A961-77B488F91664}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B463FFA-1434-4628-A961-77B488F91664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE8DC15-E081-4C60-9D8A-E447DDA1680B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE8DC15-E081-4C60-9D8A-E447DDA1680B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE8DC15-E081-4C60-9D8A-E447DDA1680B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE8DC15-E081-4C60-9D8A-E447DDA1680B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
