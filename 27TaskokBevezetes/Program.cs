@@ -31,15 +31,33 @@ namespace _27TaskokBevezetes
         private static void teszt5()
         {
             var cts = new CancellationTokenSource();
-            Action todo = () =>
-            {
-                Console.WriteLine("+Feladat futik");
-            };
+
+            Task task = null;// így meg lehet oldani, hogy az Action-on belülről is ki lehessen iratni a taszk állapotát
+
             Action subtodo = () =>
             {
-                Console.WriteLine("+-Alfeladat futik");
+                Thread.Sleep(500);
+                Console.WriteLine("+-Alfeladat futik{0},{1}",Thread.CurrentThread.ManagedThreadId,task.Status);
 
             };
+
+            Action todo = () =>
+            {
+                Console.WriteLine("+Feladat futik {0},{1}",Thread.CurrentThread.ManagedThreadId,task.Status);
+                Task.Factory.StartNew(subtodo,TaskCreationOptions.AttachedToParent); //Hozzákötjük a létrehozóhoz
+            };
+            //A fő feladatból hívjuk
+
+            task = new Task(todo); //itt viszont akkor nem kell var, hiszen korábban már létrejött a task változó!!!!
+            Console.WriteLine("Státusz:{0}", task.Status);
+            task.Start();
+            Console.WriteLine("Státusz:{0}", task.Status);
+            Thread.Sleep(100);
+            Console.WriteLine("Státusz:{0}", task.Status);
+            Thread.Sleep(800);
+            task.Wait();
+            Console.WriteLine("Státusz:{0}", task.Status);
+
         }
 
         private static void teszt4()
