@@ -14,10 +14,62 @@ namespace _27TaskokBevezetes
             //task státuszok
             //teszt1();
 
-            teszt2();
+            //teszt2();
+
+            //Taszkok leállítása
+            teszt3();
 
 
             Console.ReadLine();
+        }
+
+        private static void teszt3()
+        {
+            //1.lépés, token létrehozása
+            var cts = new CancellationTokenSource();
+            Action todo = () =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    //3.lépés, erőforrás takarítás ha kell
+                    if (cts.IsCancellationRequested)
+                    {//Ha érkezett leállítási kérés, akkor itt el lehet végezni az erőforrások felszabadítását
+                        Console.WriteLine("Cancel érkezett, takarítunk");
+                    }
+                    //4.Exception dobása
+                    cts.Token.ThrowIfCancellationRequested();
+                    Console.WriteLine("i:{0}", i);
+                    Thread.Sleep(100);
+
+                }
+
+              
+
+            };
+            var task = new Task(todo,cts.Token);//2.lépés, token átadása
+            task.Start();
+          
+            try
+            {
+                Thread.Sleep(200);
+                //5.lépés, cancel kiadása
+                cts.Cancel();
+                task.Wait();
+            }
+            catch (AggregateException ex)
+            {//6. cancel kezelése
+
+                foreach (var e in ex.InnerExceptions)
+                {
+                    if (e is TaskCanceledException)
+                    {
+                        Console.WriteLine("Cancel érkezett");
+                    }
+                }
+                
+            }
+            Console.WriteLine(task.Status);
+
         }
 
         private static void teszt2()
