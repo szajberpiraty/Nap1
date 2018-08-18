@@ -36,8 +36,25 @@ namespace _28TaskokOsszefuzese
             var tindulo = new Task<int>(() => {return Szamolas("tindulo",15); } );
             //Folytatás 21.43-tól
             //Olyan taszkot csatolunk a tindulo-hoz, ami képes értéket visszaadni
-            var tkovetkezo1 = tindulo.ContinueWith<int>(ti=> { return Szamolas("tkovetkezo1", ti.Result); });
-            var tkovetkezo2 = tindulo.ContinueWith<int>(ti => { return Szamolas("tkovetkezo2", ti.Result/2); });
+            var tkovetkezo1 = tindulo.ContinueWith<int>(ti=>
+            {   //throw new Exception(); //lehet következmény taszkot csinálni minden taszk után
+                return Szamolas("tkovetkezo1", ti.Result);
+            },TaskContinuationOptions.OnlyOnRanToCompletion); //Ezzel megadtam, hogy a tkovetkezo1 csak akkor fusson, ha a tindulo nem dobott kivételt
+
+            var tex = tkovetkezo1.ContinueWith(ti => { Console.WriteLine("*****Hiba történt!!!"); },TaskContinuationOptions.OnlyOnFaulted);
+            
+            var ct = new CancellationTokenSource();
+
+
+            var tkovetkezo2 = tindulo.ContinueWith<int>(ti =>
+            {
+                ct.Token.ThrowIfCancellationRequested();
+                return Szamolas("tkovetkezo2", ti.Result/2);
+               
+            },ct.Token
+            );
+            var tcancel = tkovetkezo2.ContinueWith(ti => { Console.WriteLine("*****Cancelled!!!"); }, TaskContinuationOptions.OnlyOnCanceled);
+
             var tkovetkezo3 = tindulo.ContinueWith<int>(ti => { return Szamolas("tkovetkezo3", ti.Result *2 ); });
 
             var tlezaro = Task<int>.Factory.ContinueWhenAll(new Task<int>[] {tkovetkezo1,tkovetkezo2,tkovetkezo3 },tasks=> 
@@ -50,6 +67,7 @@ namespace _28TaskokOsszefuzese
                 return Szamolas("tlezaro",sum/10);
             });
 
+            ct.Cancel();
             tindulo.Start();
             Console.WriteLine("Eredmény {0}",tlezaro.Result);
 
