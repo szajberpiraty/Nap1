@@ -50,7 +50,7 @@ namespace _29RestAPI
 
             Console.ReadLine();
         }
-
+        //Callback függvény az aszinkron híváshoz
         private static void BejovoAdatok(IRestResponse<List<Comment>> response, RestRequestAsyncHandle arg2)
         {
             foreach (var comment in response.Data)
@@ -61,7 +61,7 @@ namespace _29RestAPI
             }
         }
 
-        //A JSON-ból, XML-ből Special
+        //A JSON-ból, XML-ből Special Paste-el
         public class Post
         {
             public int userId { get; set; }
