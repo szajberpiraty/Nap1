@@ -9,6 +9,13 @@ namespace _29RestAPI
 {
     class Program
     {
+        /// <summary>
+        /// A bonyolultabb apikhoz általában jár kliensoldali könyvtár (Pl.Stack Overflow)
+        /// Facebook-hoz használható az ASP.NET MVC indentity
+        /// PayPal:
+        /// Sendgrid:
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             //Lekérdezéshez a RestSharp csomagot használjuk majd
