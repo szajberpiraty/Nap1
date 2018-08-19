@@ -57,6 +57,15 @@ namespace _30CodeFirstData
                 Console.WriteLine("Név {0},{1}",t191.FirstName,t191.LastName);
             }
 
+            var sum = teachers191.Sum(x=>x.Id);
+            Console.WriteLine("Az Id-k összege:{0}",sum);
+
+            //Lekérdezés feltétellel
+            var sum2 = db.Teachers
+                .Where(x => x.FirstName.Contains("V"))
+                .Sum(x => x.Id);
+
+            Console.WriteLine("Az Id-k összege:{0}", sum2);
 
             Console.ReadLine();
         }
