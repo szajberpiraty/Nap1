@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30CodeFirstData", "30CodeFi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31CodeFirst.Data", "31CodeFirst.Data\31CodeFirst.Data.csproj", "{2CC943AA-4AF7-4453-841F-233EE081DDEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31_1CodeFirst.Data.tests", "31_1CodeFirst.Data.tests\31_1CodeFirst.Data.tests.csproj", "{DFC17B61-54FE-47CC-B640-AAAF60E2B93F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,10 @@ Global
 		{2CC943AA-4AF7-4453-841F-233EE081DDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CC943AA-4AF7-4453-841F-233EE081DDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CC943AA-4AF7-4453-841F-233EE081DDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC17B61-54FE-47CC-B640-AAAF60E2B93F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC17B61-54FE-47CC-B640-AAAF60E2B93F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC17B61-54FE-47CC-B640-AAAF60E2B93F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC17B61-54FE-47CC-B640-AAAF60E2B93F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

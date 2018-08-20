@@ -9,6 +9,7 @@ namespace _31CodeFirst.Data
 {
     class Program
     {
+        //CRUD:Create,Read,Update,Delete
         static void Main(string[] args)
         {
             var db = new SchoolContext();
