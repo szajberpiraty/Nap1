@@ -18,6 +18,8 @@ namespace _31_1CodeFirst.Data.tests
             //Assert
             Assert.AreEqual(0,count);
         }
+
+        [TestMethod]
         public void AddTeachersToTeachersTable_ShouldBeAppear()
         {
             //Arrange
@@ -53,7 +55,15 @@ namespace _31_1CodeFirst.Data.tests
              );
 
             //Assert
-            Assert.AreEqual(0, count);
+            Assert.IsNotNull(teachersaved);
+            Assert.AreEqual(teacher.Id, teachersaved.Id);
+            Assert.AreEqual(teacher.ClassCode, teachersaved.ClassCode);
+            Assert.AreEqual(teacher.FirstName, teachersaved.FirstName);
+            Assert.AreEqual(teacher.LastName, teachersaved.LastName);
+
+            //TearDown, takarítunk a teszt után
+            db.Teachers.Remove(teachersaved);
+            db.SaveChanges();
         }
     }
 }
