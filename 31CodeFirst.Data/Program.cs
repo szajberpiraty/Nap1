@@ -17,6 +17,8 @@ namespace _31CodeFirst.Data
             var db = new SchoolContext();
             Console.WriteLine("Tanárok:{0}",db.Teachers.Count());
             Console.ReadLine();
+
+            //Folytatás 14.42-től
         }
     }
 }
