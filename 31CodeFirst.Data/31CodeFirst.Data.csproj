@@ -56,6 +56,18 @@
     <Compile Include="Migrations\201808201104141_InitialCreate.Designer.cs">
       <DependentUpon>201808201104141_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808211224129_add Teacher table.cs" />
+    <Compile Include="Migrations\201808211224129_add Teacher table.Designer.cs">
+      <DependentUpon>201808211224129_add Teacher table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211304029_add Subject table.cs" />
+    <Compile Include="Migrations\201808211304029_add Subject table.Designer.cs">
+      <DependentUpon>201808211304029_add Subject table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211358096_add connect Teacher-to-Subject.cs" />
+    <Compile Include="Migrations\201808211358096_add connect Teacher-to-Subject.Designer.cs">
+      <DependentUpon>201808211358096_add connect Teacher-to-Subject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\SchoolContext.cs" />
     <Compile Include="models\Subject.cs" />
@@ -70,6 +82,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808201104141_InitialCreate.resx">
       <DependentUpon>201808201104141_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211224129_add Teacher table.resx">
+      <DependentUpon>201808211224129_add Teacher table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211304029_add Subject table.resx">
+      <DependentUpon>201808211304029_add Subject table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211358096_add connect Teacher-to-Subject.resx">
+      <DependentUpon>201808211358096_add connect Teacher-to-Subject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

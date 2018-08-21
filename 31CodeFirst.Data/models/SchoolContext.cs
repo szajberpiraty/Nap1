@@ -23,8 +23,10 @@ namespace _31CodeFirst.Data.models
         //A SchoolContext-et le kell származtatni a DbContext-ből, ehhez be kell tölteni a System.Data.Entity-t, amit az EntityFramework szállít
         public DbSet<Teacher> Teachers { get; set; }
 
+
         //Akár ez is következhetne, de akkor mindig újra kellene építgetni az adatbázist, ezért nem lesz jó.
-        //public DbSet<Subject> Subjects { get; set; }
+        //A migráció bekapcsolása után már jó a dolog
+        public DbSet<Subject> Subjects { get; set; }
 
         //A package management console-ban engedélyezni kell a migrációt (enable-migration)
     }

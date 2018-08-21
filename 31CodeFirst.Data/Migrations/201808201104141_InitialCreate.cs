@@ -17,7 +17,8 @@ namespace _31CodeFirst.Data.Migrations
                         ClassCode = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
+            Sql("insert Teachers(FirstName,Lastname,ClassCode) values('Zubornyák','Zénó','1/9/1')");
+            Sql("insert Teachers(FirstName,Lastname,ClassCode) values('Zubor','Ubul','1/9/2')");
         }
         
         public override void Down()
