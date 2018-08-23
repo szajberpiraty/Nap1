@@ -13,5 +13,6 @@ namespace _31CodeFirst.Data.models
         public string LastName { get; set; }
         public string ClassCode { get; set; }
         public Subject Subject { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

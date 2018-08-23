@@ -68,8 +68,13 @@
     <Compile Include="Migrations\201808211358096_add connect Teacher-to-Subject.Designer.cs">
       <DependentUpon>201808211358096_add connect Teacher-to-Subject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808231413556_Add Student table and connection to teacher.cs" />
+    <Compile Include="Migrations\201808231413556_Add Student table and connection to teacher.Designer.cs">
+      <DependentUpon>201808231413556_Add Student table and connection to teacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\SchoolContext.cs" />
+    <Compile Include="models\Student.cs" />
     <Compile Include="models\Subject.cs" />
     <Compile Include="models\Teacher.cs" />
     <Compile Include="Program.cs" />
@@ -91,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808211358096_add connect Teacher-to-Subject.resx">
       <DependentUpon>201808211358096_add connect Teacher-to-Subject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808231413556_Add Student table and connection to teacher.resx">
+      <DependentUpon>201808231413556_Add Student table and connection to teacher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
