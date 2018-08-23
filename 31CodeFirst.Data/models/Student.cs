@@ -10,6 +10,6 @@ namespace _31CodeFirst.Data.models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Teacher teacher { get; set; }
+        public virtual Teacher teacher { get; set; }
     }
 }
