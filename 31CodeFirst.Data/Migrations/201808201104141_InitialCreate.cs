@@ -17,8 +17,12 @@ namespace _31CodeFirst.Data.Migrations
                         ClassCode = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            Sql("insert Teachers(FirstName,Lastname,ClassCode) values('Zubornyák','Zénó','1/9/1')");
-            Sql("insert Teachers(FirstName,Lastname,ClassCode) values('Zubor','Ubul','1/9/2')");
+
+            //Ha garantálni akarom az Id-ket
+            Sql("set identity_insert Teachers on");
+            Sql("insert Teachers(Id,FirstName,Lastname,ClassCode) values(1,'Zubornyák','Zénó','1/9/1')");
+            Sql("insert Teachers(Id,FirstName,Lastname,ClassCode) values(2,'Zubor','Ubul','1/9/2')");
+            Sql("set identity_insert Teachers off");
         }
         
         public override void Down()

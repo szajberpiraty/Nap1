@@ -15,8 +15,10 @@ namespace _31CodeFirst.Data.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            Sql("insert Subjects(Name) values('matematika')");
-            Sql("insert Subjects(Name) values('informatika')");
+            Sql("set identity_insert Subjects on");
+            Sql("insert Subjects(Id,Name) values(1,'matematika')");
+            Sql("insert Subjects(Id,Name) values(2,'informatika')");
+            Sql("set identity_insert Subjects off");
 
         }
         
