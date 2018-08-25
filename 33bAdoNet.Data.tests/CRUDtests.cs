@@ -21,6 +21,23 @@ namespace _33bAdoNet.Data.tests
         [TestMethod]
         public void TeacherCreate()
         {
+            //Arrange
+            var db = new DbAccess();
+
+            var teacher = new Teachers()
+            {
+                FirstName="Teszt"
+                ,LastName="Elek"
+                ,ClassCode="191"
+            };
+            var id = db.CreateTeacher(teacher);
+
+            Assert.AreNotEqual(0, id);
+            var teacherSaved = db.ReadTeacher(id);
+            Assert.IsNotNull(teacherSaved);
+
+
+
         }
         [TestMethod]
         public void TeacherRead()

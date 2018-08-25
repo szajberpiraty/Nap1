@@ -41,5 +41,76 @@ namespace _33AdoNet.Data
             }
             return teachers;
         }
+
+        public Teachers ReadTeacher(int id) //Teachers-el tér vissza
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
+                using (var cmd = new SqlCommand("SELECT FirstName,LastName,ClassCode FROM Teachers WHERE ID=@Id", con))
+                {
+                    var param = cmd.CreateParameter();
+                    param.DbType = DbType.Int32;
+                    param.Direction = ParameterDirection.Input;
+                    param.ParameterName = "@Id";
+                    param.Value = id;
+
+                    //Hozzáadjuk a parancshoz
+                    cmd.Parameters.Add(param);
+
+                    //Végrehajtjuk a parancsot és nyitunk egy readert
+                    var reader = cmd.ExecuteReader();
+
+                    //Itt is 0-val térünk vissza, ha nincs sor
+                    if (!reader.Read())
+                    {//ravaszul visszatérünk null-al
+                        return null;
+                    }
+
+                    var teacher = new Teachers()
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("Id"))
+                        ,FirstName= reader.GetString(reader.GetOrdinal("FirstName"))
+                        ,LastName = reader.GetString(reader.GetOrdinal("LastName"))
+                        ,ClassCode = reader.GetString(reader.GetOrdinal("ClassCode"))
+                    };
+                    return teacher;
+                }
+            }
+        }
+
+        public int CreateTeacher(Teachers teacher)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
+                using (var cmd = new SqlCommand("INSERT Teachers(FirstName,LastName,ClassCode) VALUES (@FirstName,@LastName,@ClassCode);SELECT SCOPE_IDENTITY() AS ID", con))
+                {
+                    //String-ből hozta létre a táblát a CodeFirst, ezért ez az adatbázisban NVarChar(max) típus lett
+                    //ezt a max értéket a -1-el adjuk meg
+                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, -1).Value = teacher.FirstName;
+
+                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, -1).Value = teacher.LastName;
+                    cmd.Parameters.Add("@ClassCode", SqlDbType.NVarChar, -1).Value = teacher.ClassCode;
+
+
+                    //Lefuttatjuk a parancsot és nyitunk egy reader-t az azonosító betöltéséhez
+                    var reader = cmd.ExecuteReader();
+                    //Ráállunk a köv. sorra, ami az első sor lesz.
+                    //
+                    if (!reader.Read())
+                    {//Ha nem sikerül, akkor 0 értékkel jelezzük, ami nem megengedett érték az Identity mezőben
+                        return 0;
+                    }
+                    //Egy oszlopos a visszaadott rekordhalmaz, az első oszlop a 0-s indexű
+                    var id = (int)reader.GetDecimal(0); //int-re castoljuk az értéket
+
+                    return id;
+
+                }
+            }
+        }
     }
 }
