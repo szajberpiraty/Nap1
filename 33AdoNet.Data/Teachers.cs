@@ -6,5 +6,6 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ClassCode { get; set; }
+        public int Subject_Id { get; set; }
     }
 }

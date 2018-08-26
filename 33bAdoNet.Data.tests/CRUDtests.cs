@@ -29,6 +29,7 @@ namespace _33bAdoNet.Data.tests
                 FirstName="Teszt"
                 ,LastName="Elek"
                 ,ClassCode="191"
+                ,Subject_Id=1
             };
             var id = db.CreateTeacher(teacher);
 
@@ -36,7 +37,8 @@ namespace _33bAdoNet.Data.tests
             var teacherSaved = db.ReadTeacher(id);
             Assert.IsNotNull(teacherSaved);
 
-
+            var deletedLines = db.DeleteTeacher(id);
+            Assert.AreEqual(1, deletedLines);
 
         }
         [TestMethod]

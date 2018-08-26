@@ -19,7 +19,7 @@ namespace _33AdoNet.Data
 
             using (var con=new SqlConnection(connectionString))
             {
-                using (var cmd=new SqlCommand("select Id,FirstName,LastName,ClassCode from Teachers",con))
+                using (var cmd=new SqlCommand("select Id,FirstName,LastName,ClassCode,Subject_Id from Teachers",con))
                 {
                     using (var da=new SqlDataAdapter(cmd))
                     {
@@ -36,10 +36,29 @@ namespace _33AdoNet.Data
                     ,FirstName=row.Field<string>("FirstName")
                     ,LastName = row.Field<string>("LastName")
                     ,ClassCode = row.Field<string>("ClassCode")
+                    ,Subject_Id= row.Field<int>("Subject_Id")
                 };
                 teachers.Add(teacher);
             }
             return teachers;
+        }
+
+        public int DeleteTeacher(int id)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
+                using (var cmd = new SqlCommand("DELETE FROM Teacher WHERE Id=@Id", con))
+                {
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value =id;
+
+                    //az érintett sorok számával tér vissza
+                    var affectedRows = cmd.ExecuteNonQuery();
+
+                    return affectedRows;
+                }
+            }
         }
 
         public Teachers ReadTeacher(int id) //Teachers-el tér vissza
@@ -48,7 +67,7 @@ namespace _33AdoNet.Data
             {
                 con.Open();
                 //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
-                using (var cmd = new SqlCommand("SELECT FirstName,LastName,ClassCode FROM Teachers WHERE ID=@Id", con))
+                using (var cmd = new SqlCommand("SELECT FirstName,LastName,ClassCode,Subject_Id FROM Teachers WHERE ID=@Id", con))
                 {
                     var param = cmd.CreateParameter();
                     param.DbType = DbType.Int32;
@@ -74,6 +93,7 @@ namespace _33AdoNet.Data
                         ,FirstName= reader.GetString(reader.GetOrdinal("FirstName"))
                         ,LastName = reader.GetString(reader.GetOrdinal("LastName"))
                         ,ClassCode = reader.GetString(reader.GetOrdinal("ClassCode"))
+                        ,Subject_Id = reader.GetInt32(reader.GetOrdinal("Subject_Id"))
                     };
                     return teacher;
                 }
@@ -86,7 +106,7 @@ namespace _33AdoNet.Data
             {
                 con.Open();
                 //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
-                using (var cmd = new SqlCommand("INSERT Teachers(FirstName,LastName,ClassCode) VALUES (@FirstName,@LastName,@ClassCode);SELECT SCOPE_IDENTITY() AS ID", con))
+                using (var cmd = new SqlCommand("INSERT Teachers(FirstName,LastName,ClassCode,Subject_Id) VALUES (@FirstName,@LastName,@ClassCode,@Subject_Id);SELECT SCOPE_IDENTITY() AS ID", con))
                 {
                     //String-ből hozta létre a táblát a CodeFirst, ezért ez az adatbázisban NVarChar(max) típus lett
                     //ezt a max értéket a -1-el adjuk meg
@@ -94,6 +114,7 @@ namespace _33AdoNet.Data
 
                     cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, -1).Value = teacher.LastName;
                     cmd.Parameters.Add("@ClassCode", SqlDbType.NVarChar, -1).Value = teacher.ClassCode;
+                    cmd.Parameters.Add("@Subject_Id", SqlDbType.Int).Value = teacher.Subject_Id;
 
 
                     //Lefuttatjuk a parancsot és nyitunk egy reader-t az azonosító betöltéséhez
