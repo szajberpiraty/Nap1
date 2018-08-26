@@ -61,6 +61,26 @@ namespace _33AdoNet.Data
             }
         }
 
+        public int UpdateTeacher(Teachers teacher)
+        {
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                //Nem szabad nekiállni stringeket építeni, mert SQL injection-ra ad lehetőséget
+                using (var cmd = new SqlCommand("UPDATE Teachers SET FirstName=@FirstName,LastName=@LastName,ClassCode=@ClassCode,Subject_Id=@Subject_Id WHERE ID=@Id", con))
+                {
+                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = teacher.Id;
+                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, -1).Value = teacher.FirstName;
+                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar, -1).Value = teacher.LastName;
+                    cmd.Parameters.Add("@ClassCode", SqlDbType.NVarChar, -1).Value = teacher.ClassCode;
+                    cmd.Parameters.Add("@Subject_Id", SqlDbType.Int).Value = teacher.Subject_Id;
+                    var affectedRows = cmd.ExecuteNonQuery();
+
+                    return affectedRows;
+                }
+            }
+        }
+
         public Teachers ReadTeacher(int id) //Teachers-el tér vissza
         {
             using (var con = new SqlConnection(connectionString))

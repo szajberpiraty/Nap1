@@ -48,6 +48,20 @@ namespace _33bAdoNet.Data.tests
         [TestMethod]
         public void TeacherUpdate()
         {
+            //Arrange
+            var db = new DbAccess();
+
+            //Act
+            var teacher = db.ReadTeacher(1);
+
+            teacher.FirstName = "Teszt1";
+            teacher.LastName = "Teszt1_last";
+            teacher.ClassCode = "191";
+            teacher.Subject_Id = 2;
+
+            int updatedTeacher=db.UpdateTeacher(teacher);
+            //Assert
+            Assert.AreEqual(1, updatedTeacher);
         }
         [TestMethod]
         public void TeacherDelete()
